@@ -1,0 +1,60 @@
+name: ETF Weekly Excel
+
+on:
+  schedule:
+    # 토 KST 09:00 = UTC 금 00:00
+    - cron: '0 0 * * 6'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'DRY_RUN (테스트)'
+        required: false
+        default: 'false'
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: weekly-excel
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate weekly Excel
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: python generate_excel.py
+
+      - name: Upload Excel as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-report-${{ github.run_id }}
+          path: output/*.xlsx
+          retention-days: 30
+
+      - name: Send Excel via Telegram
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          FILE=$(ls output/*.xlsx | head -1)
+          curl -s -X POST \
+            https://api.telegram.org/bot${TG_BOT_TOKEN}/sendDocument \
+            -F chat_id=${TG_CHAT_ID} \
+            -F document=@"${FILE}" \
+            -F caption="📊 주간 ETF 트래커 엑셀 리포트"
