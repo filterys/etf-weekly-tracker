@@ -1,0 +1,54 @@
+name: ETF Daily Fetch
+
+on:
+  schedule:
+    # 평일 KST 18:30 = UTC 09:30
+    - cron: '30 9 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: '수집 날짜 (YYYY-MM-DD, 비우면 오늘)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'DRY_RUN (텔레그램 미발송)'
+        required: false
+        default: 'false'
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: daily-fetch
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Run daily fetch
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          TARGET_DATE: ${{ github.event.inputs.target_date || '' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: python fetch_daily.py
+
+      - name: Commit snapshots
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "snapshot: $(date +%Y-%m-%d)"
+          git push
