@@ -104,31 +104,30 @@ def fetch_kodex(etf, date):
 # 2026-06-14: timeetf.co.kr 로 도메인 변경, past_pdf_json.php 엔드포인트
 # 응답: {"today": [{"prodNm": "종목명", "wei": "비중", "increaseWei": "신규"}, ...]}
 def fetch_time(etf, date):
+    # 2026-06-15: past_pdf_json(상위10 요약) → m11_view.php(전체 구성종목+수량) 파싱
     idx = etf['params']['idx']
-    date_fmt = date.strftime('%Y%m%d')
-    url = f'https://timeetf.co.kr/past_pdf_json.php?idx={idx}&period={date_fmt}'
+    pdf_date = date.strftime('%Y-%m-%d')
+    url = f'https://timeetf.co.kr/m11_view.php?idx={idx}&cate=&pdfDate={pdf_date}'
     try:
         r = requests.get(url, headers={**HEADERS, 'Referer': 'https://timeetf.co.kr/'}, timeout=15)
         if r.status_code != 200:
             print(f'  TIME idx={idx} HTTP {r.status_code}')
             return []
-        data = r.json()
-        items = data.get('today') or []
+        pat = r'<tr>\s*<td>([0-9A-Z]{5,6})</td>\s*<td>([^<]+)</td>\s*<td>([\d,]+)</td>\s*<td>[\d,]+</td>\s*<td>([\d.]+)</td>\s*</tr>'
         result = []
-        for item in items:
-            name = str(item.get('prodNm') or '').strip()
-            pct  = item.get('wei') or 0
+        for code, name, qty, pct in re.findall(pat, r.text):
+            name = name.strip()
             if not name or '현금' in name:
                 continue
             try:
-                p = float(str(pct).replace(',', '')) if pct else 0.0
-                result.append({'name': name, 'qty': 0, 'weight': p})
+                result.append({'name': name, 'qty': int(qty.replace(',', '')), 'weight': float(pct)})
             except:
                 pass
         return result
     except Exception as e:
         print(f'  TIME idx={idx} 오류: {e}')
         return []
+
 
 # ── 한화 PLUS ───────────────────────────────────────────────────
 # 2026-06-14: plusetf.co.kr 신규 API 확인 완료
