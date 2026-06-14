@@ -218,6 +218,11 @@ async def fetch_tiger_async(etf, date):
                     if self.in_td: self.cur.append(data.strip())
             p = TableParser()
             p.feed(html)
+            # === DEBUG: 테이블 구조 확인 (파싱 진단용, 확인 후 제거) ===
+            print(f'  [DEBUG] 총 {len(p.rows)}행')
+            for i, r in enumerate(p.rows[:6]):
+                print(f'  [DEBUG] row{i} ({len(r)}cols): {r}')
+            # === DEBUG 끝 ===
             result = []
             for row in p.rows[1:]:
                 if len(row) < 2: continue
@@ -381,3 +386,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
