@@ -166,58 +166,74 @@ def fetch_plus(etf, date):
         print(f'  PLUS {fund_code} 오류: {e}')
         return []
 
-# ── 미래에셋 TIGER # ── 미래에셋 TIGER ──────────────────────────────────────────────
-# 2026-06-14: Session으로 먼저 메인 페이지 GET → 쿠키 발급 후 pdf.ajax 요청
-def fetch_tiger(etf, date):
+# ── 미래에셋 TIGER ──────────────────────────────────────────────────
+# 2026-06-14: requests 403 → Playwright로 변경 (GitHub Actions IP 차단 우회)
+async def fetch_tiger_async(etf, date):
     ksd_fund = etf['params']['ksdFund']
     date_fmt = date.strftime('%Y%m%d')
     base_url = f'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/index.do?ksdFund={ksd_fund}'
     ajax_url = 'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/pdf.ajax'
     try:
-        session = requests.Session()
-        session.headers.update(HEADERS)
-        # 쿠키 발급
-        session.get(base_url, timeout=15)
-        # holdings 요청
-        r = session.post(ajax_url, headers={
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Referer': base_url,
-        }, data=f'ksdFund={ksd_fund}&trdDd={date_fmt}', timeout=15)
-        if r.status_code != 200:
-            print(f'  TIGER {ksd_fund} HTTP {r.status_code}')
-            return []
-        from html.parser import HTMLParser
-        class TableParser(HTMLParser):
-            def __init__(self):
-                super().__init__()
-                self.rows, self.cur, self.in_td = [], [], False
-            def handle_starttag(self, tag, attrs):
-                if tag in ('td', 'th'): self.in_td = True
-            def handle_endtag(self, tag):
-                if tag in ('td', 'th'): self.in_td = False
-                elif tag == 'tr':
-                    if self.cur: self.rows.append(self.cur[:])
-                    self.cur = []
-            def handle_data(self, data):
-                if self.in_td: self.cur.append(data.strip())
-        p = TableParser()
-        p.feed(r.text)
-        result = []
-        for row in p.rows[1:]:
-            if len(row) < 2: continue
-            name = row[0].strip()
-            if not name or '현금' in name: continue
-            try:
-                qty = int(str(row[1]).replace(',', '')) if len(row) > 1 else 0
-                pct = float(str(row[-1]).replace(',', '').replace('%', '')) if len(row) > 2 else 0.0
-                if qty > 0:
-                    result.append({'name': name, 'qty': qty, 'weight': pct})
-            except:
-                pass
-        return result
+        from playwright.async_api import async_playwright
+        async with async_playwright() as pw:
+            browser = await pw.chromium.launch(headless=True)
+            context = await browser.new_context(
+                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            )
+            page = await context.new_page()
+            # 쿠키 발급
+            await page.goto(base_url, wait_until='domcontentloaded', timeout=20000)
+            # pdf.ajax POST
+            response = await page.evaluate(f"""
+                async () => {{
+                    const r = await fetch('{ajax_url}', {{
+                        method: 'POST',
+                        headers: {{
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'Referer': '{base_url}'
+                        }},
+                        body: 'ksdFund={ksd_fund}&trdDd={date_fmt}'
+                    }});
+                    return await r.text();
+                }}
+            """)
+            await browser.close()
+            # HTML 테이블 파싱
+            from html.parser import HTMLParser
+            class TableParser(HTMLParser):
+                def __init__(self):
+                    super().__init__()
+                    self.rows, self.cur, self.in_td = [], [], False
+                def handle_starttag(self, tag, attrs):
+                    if tag in ('td', 'th'): self.in_td = True
+                def handle_endtag(self, tag):
+                    if tag in ('td', 'th'): self.in_td = False
+                    elif tag == 'tr':
+                        if self.cur: self.rows.append(self.cur[:])
+                        self.cur = []
+                def handle_data(self, data):
+                    if self.in_td: self.cur.append(data.strip())
+            p = TableParser()
+            p.feed(response)
+            result = []
+            for row in p.rows[1:]:
+                if len(row) < 2: continue
+                name = row[0].strip()
+                if not name or '현금' in name: continue
+                try:
+                    qty = int(str(row[1]).replace(',', '')) if len(row) > 1 else 0
+                    pct = float(str(row[-1]).replace(',', '').replace('%', '')) if len(row) > 2 else 0.0
+                    if qty > 0:
+                        result.append({'name': name, 'qty': qty, 'weight': pct})
+                except:
+                    pass
+            return result
     except Exception as e:
         print(f'  TIGER {ksd_fund} 오류: {e}')
         return []
+
+def fetch_tiger(etf, date):
+    return asyncio.run(fetch_tiger_async(etf, date))
 
 # ── VITA ────────────────────────────────────────────────────────
 async def fetch_vita_async(etf, date):
