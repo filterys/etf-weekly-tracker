@@ -280,7 +280,7 @@ def load_snapshot(date):
         return json.load(f)
 
 def send_telegram(text):
-    if DRY_RUN:
+    if DRY_RUN or TARGET_DATE:  # 백필 시 텔레 미발송
         print(f'[DRY_RUN] TG: {text[:100]}')
         return True
     try:
