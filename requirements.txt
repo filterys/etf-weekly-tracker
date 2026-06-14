@@ -1,6 +1,5 @@
 requests
-beautifulsoup4
-openpyxl
 playwright
-holidays
-python-dotenv
+openpyxl
+beautifulsoup4
+lxml
