@@ -218,10 +218,10 @@ async def fetch_tiger_async(etf, date):
                     if self.in_td: self.cur.append(data.strip())
             p = TableParser()
             p.feed(html)
-            # === DEBUG: 테이블 구조 확인 (파싱 진단용, 확인 후 제거) ===
-            print(f'  [DEBUG] 총 {len(p.rows)}행')
-            for i, r in enumerate(p.rows[:6]):
-                print(f'  [DEBUG] row{i} ({len(r)}cols): {r}')
+            # === DEBUG: html 본문 구조 분석 (확인 후 제거) ===
+            print(f'  [DEBUG] tr={html.count(chr(60)+"tr")} td={html.count(chr(60)+"td")} tbody={html.count(chr(60)+"tbody")} table={html.count(chr(60)+"table")}')
+            _h = html.find('종목코드')
+            print(f'  [DEBUG] 헤더이후 1200자: {repr(html[_h:_h+1200])}')
             # === DEBUG 끝 ===
             result = []
             for row in p.rows[1:]:
