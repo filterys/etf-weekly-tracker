@@ -113,9 +113,14 @@ def fetch_time(etf, date):
         if r.status_code != 200:
             print(f'  TIME idx={idx} HTTP {r.status_code}')
             return []
-        pat = r'<tr>\s*<td>([0-9A-Z]{5,6})</td>\s*<td>([^<]+)</td>\s*<td>([\d,]+)</td>\s*<td>[\d,]+</td>\s*<td>([\d.]+)</td>\s*</tr>'
+        body = r.text
+        ti = body.find('moreList1')
+        if ti >= 0:
+            tend = body.find('</table>', ti)
+            body = body[ti:tend] if tend > 0 else body[ti:]
+        pat = r'<tr>\s*<td>([^<]*)</td>\s*<td>([^<]+)</td>\s*<td>([\d,]+)</td>\s*<td>[\d,]+</td>\s*<td>([\d.]+)</td>\s*</tr>'
         result = []
-        for code, name, qty, pct in re.findall(pat, r.text):
+        for code, name, qty, pct in re.findall(pat, body):
             name = name.strip()
             if not name or '현금' in name:
                 continue
