@@ -130,41 +130,37 @@ def fetch_time(etf, date):
         print(f'  TIME idx={idx} 오류: {e}')
         return []
 
-# ── 한화 PLUS ───────────────────────────────────────────────────────
-# 2026-06-14: plusetf.co.kr 이전. 구성종목이 SSR HTML에 내장 → BeautifulSoup 파싱
+# ── 한화 PLUS ───────────────────────────────────────────────────
+# 2026-06-14: plusetf.co.kr 신규 API 확인 완료
+# GET /api/v1/product/pdf/list?n={fund_code}&d={YYYYMMDD}&page=0&pageSize=100
+# 응답: {"content": [{"jmNm": "종목명", "amount": 수량, "ratio": 비중}, ...]}
 def fetch_plus(etf, date):
     fund_code = etf['params']['fund_code']
-    url = f'https://www.plusetf.co.kr/product/detail?n={fund_code}'
+    date_fmt = date.strftime('%Y%m%d')
+    url = f'https://www.plusetf.co.kr/api/v1/product/pdf/list'
     try:
-        from bs4 import BeautifulSoup
-        r = requests.get(url, headers={**HEADERS, 'Referer': 'https://www.plusetf.co.kr/'}, timeout=15)
+        r = requests.get(url, headers={
+            **HEADERS,
+            'Referer': f'https://www.plusetf.co.kr/product/detail?n={fund_code}',
+        }, params={'n': fund_code, 'd': date_fmt, 'page': 0, 'pageSize': 200}, timeout=15)
         if r.status_code != 200:
             print(f'  PLUS {fund_code} HTTP {r.status_code}')
             return []
-        soup = BeautifulSoup(r.text, 'html.parser')
+        items = r.json().get('content', [])
         result = []
-        for table in soup.find_all('table'):
-            headers = [th.get_text(strip=True) for th in table.find_all('th')]
-            if '종목명' not in headers:
+        for item in items:
+            name = str(item.get('jmNm') or '').strip()
+            qty  = item.get('amount') or 0
+            pct  = item.get('ratio') or 0
+            if not name or '현금' in name:
                 continue
-            name_idx = headers.index('종목명')
-            qty_idx  = next((i for i, h in enumerate(headers) if '수량' in h), -1)
-            pct_idx  = next((i for i, h in enumerate(headers) if '비중' in h), -1)
-            for row in table.find_all('tr')[1:]:
-                cells = [td.get_text(strip=True) for td in row.find_all('td')]
-                if not cells or name_idx >= len(cells): continue
-                name = cells[name_idx]
-                if not name or '현금' in name: continue
-                try:
-                    qty = int(str(cells[qty_idx]).replace(',', '')) if qty_idx >= 0 and qty_idx < len(cells) else 0
-                    pct_raw = cells[pct_idx].replace('%','').replace(',','') if pct_idx >= 0 and pct_idx < len(cells) else '0'
-                    pct = float(pct_raw) if pct_raw else 0.0
-                    result.append({'name': name, 'qty': qty, 'weight': pct})
-                except:
-                    pass
-            if result:
-                break
-        print(f'  PLUS {fund_code} → {len(result)}개 (HTML 파싱)')
+            try:
+                q = int(qty)
+                p = float(pct)
+                if q > 0:
+                    result.append({'name': name, 'qty': q, 'weight': p})
+            except:
+                pass
         return result
     except Exception as e:
         print(f'  PLUS {fund_code} 오류: {e}')
