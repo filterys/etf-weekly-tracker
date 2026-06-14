@@ -196,6 +196,8 @@ async def fetch_tiger_async(etf, date):
                 }
             """, {'ksdFund': ksd_fund, 'trdDd': date_fmt})
             await browser.close()
+            # 디버그: html 내용 출력
+            print(f'  TIGER {ksd_fund} html preview: {repr(html[:300])}')
             if not html or len(html) < 50:
                 print(f'  TIGER {ksd_fund} 응답 없음 (len={len(html) if html else 0})')
                 return []
