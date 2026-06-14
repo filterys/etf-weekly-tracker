@@ -167,8 +167,10 @@ def fetch_plus(etf, date):
         return []
 
 # ── 미래에셋 TIGER ──────────────────────────────────────────────────
-# 2026-06-14: Playwright로 변경 (GitHub Actions IP 차단 우회)
-# page.evaluate로 fetch 호출 후 파싱
+# 2026-06-14: prdct-item-list.ajax (JSON) 직접 호출 방식으로 변경
+#   pdf.ajax는 빈 테이블 틀(헤더+빈 tbody)만 반환 → 실제 구성종목은
+#   prdct-item-list.ajax 가 JSON(rtnData[])으로 제공. listCnt 크게 주면 전체 수신.
+#   GitHub Actions IP 차단은 Playwright 브라우저 컨텍스트로 우회.
 async def fetch_tiger_async(etf, date):
     ksd_fund = etf['params']['ksdFund']
     date_fmt = date.strftime('%Y%m%d')
@@ -182,60 +184,28 @@ async def fetch_tiger_async(etf, date):
             )
             page = await context.new_page()
             await page.goto(base_url, wait_until='domcontentloaded', timeout=20000)
-            # pdf.ajax 직접 호출 (쿠키 포함 상태에서)
-            html = await page.evaluate("""
-                (args) => {
-                    return new Promise((resolve, reject) => {
-                        const xhr = new XMLHttpRequest();
-                        xhr.open('POST', '/tigeretf/ko/product/search/detail/pdf.ajax', true);
-                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                        xhr.onload = () => resolve(xhr.responseText);
-                        xhr.onerror = () => reject('XHR error');
-                        xhr.send('ksdFund=' + args.ksdFund + '&trdDd=' + args.trdDd);
-                    });
+            # 세션 쿠키 포함 상태에서 구성종목 JSON 요청
+            data = await page.evaluate("""
+                async (args) => {
+                    const url = `/tigeretf/ko/product/chart/prdct-item-list.ajax`
+                        + `?ksdFund=${args.ksd}&prfPrd=Week01&fixDate=${args.date}&listCnt=500`;
+                    const r = await fetch(url, {method:'POST', headers:{'X-Requested-With':'XMLHttpRequest'}});
+                    const txt = await r.text();
+                    try { return JSON.parse(txt); } catch(e) { return null; }
                 }
-            """, {'ksdFund': ksd_fund, 'trdDd': date_fmt})
+            """, {'ksd': ksd_fund, 'date': date_fmt})
             await browser.close()
-            # 디버그: html 내용 출력
-            print(f'  TIGER {ksd_fund} html preview: {repr(html[:300])}')
-            if not html or len(html) < 50:
-                print(f'  TIGER {ksd_fund} 응답 없음 (len={len(html) if html else 0})')
+            if not data or 'rtnData' not in data:
+                print(f'  TIGER {ksd_fund} 응답 없음/형식오류')
                 return []
-            # HTML 테이블 파싱
-            from html.parser import HTMLParser
-            class TableParser(HTMLParser):
-                def __init__(self):
-                    super().__init__()
-                    self.rows, self.cur, self.in_td = [], [], False
-                def handle_starttag(self, tag, attrs):
-                    if tag in ('td', 'th'): self.in_td = True
-                def handle_endtag(self, tag):
-                    if tag in ('td', 'th'): self.in_td = False
-                    elif tag == 'tr':
-                        if self.cur: self.rows.append(self.cur[:])
-                        self.cur = []
-                def handle_data(self, data):
-                    if self.in_td: self.cur.append(data.strip())
-            p = TableParser()
-            p.feed(html)
-            # === DEBUG: html 본문 구조 분석 (확인 후 제거) ===
-            print(f'  [DEBUG] tr={html.count(chr(60)+"tr")} td={html.count(chr(60)+"td")} tbody={html.count(chr(60)+"tbody")} table={html.count(chr(60)+"table")}')
-            _h = html.find('종목코드')
-            print(f'  [DEBUG] 헤더이후 1200자: {repr(html[_h:_h+1200])}')
-            # === DEBUG 끝 ===
             result = []
-            for row in p.rows[1:]:
-                if len(row) < 2: continue
-                name = row[0].strip()
-                if not name or '현금' in name: continue
-                try:
-                    qty = int(str(row[1]).replace(',', '')) if len(row) > 1 else 0
-                    pct = float(str(row[-1]).replace(',', '').replace('%', '')) if len(row) > 2 else 0.0
-                    if qty > 0:
-                        result.append({'name': name, 'qty': qty, 'weight': pct})
-                except:
-                    pass
-            print(f'  TIGER {ksd_fund} → {len(result)}개 (html {len(html)}bytes)')
+            for item in data['rtnData']:
+                name = (item.get('memItemname') or '').strip()
+                qty = item.get('stockQty') or 0
+                weight = item.get('stockRate') or 0.0
+                if name and '현금' not in name and qty and qty > 0:
+                    result.append({'name': name, 'qty': int(qty), 'weight': float(weight)})
+            print(f'  TIGER {ksd_fund} → {len(result)}개')
             return result
     except Exception as e:
         print(f'  TIGER {ksd_fund} 오류: {e}')
