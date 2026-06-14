@@ -22,7 +22,7 @@ SHEETS = [
     {
         "name": "바이오",
         "etfs": [
-            {"name": "TIME K바이오액티브", "code": "463050", "source": "time", "params": {"idx": "20"}},
+            {"name": "TIME K바이오액티브", "code": "463050", "source": "time", "params": {"idx": "13"}},
             {"name": "KoAct 바이오헬스케어액티브", "code": "462900", "source": "samsung", "params": {"fund_id": "2ETFJ9"}},
             {"name": "TIGER 기술이전바이오액티브", "code": "0168K0", "source": "tiger", "params": {"ksdFund": "KR70168K0008"}},
         ],
@@ -30,7 +30,7 @@ SHEETS = [
     {
         "name": "AI/로봇",
         "etfs": [
-            {"name": "TIME 글로벌AI인공지능액티브", "code": "456600", "source": "time", "params": {"idx": "19"}},
+            {"name": "TIME 글로벌AI인공지능액티브", "code": "456600", "source": "time", "params": {"idx": "6"}},
             {"name": "KoAct 글로벌AI&로봇액티브", "code": "471040", "source": "samsung", "params": {"fund_id": "2ETFL3"}},
             {"name": "KoAct AI인프라액티브", "code": "487130", "source": "samsung", "params": {"fund_id": "2ETFN8"}},
             {"name": "TIGER 코리아테크액티브", "code": "471780", "source": "tiger", "params": {"ksdFund": "KR7471780007"}},
@@ -39,7 +39,7 @@ SHEETS = [
     {
         "name": "K컬처",
         "etfs": [
-            {"name": "TIME K컬처액티브", "code": "410870", "source": "time", "params": {"idx": "15"}},
+            {"name": "TIME K컬처액티브", "code": "410870", "source": "time", "params": {"idx": "1"}},
             {"name": "KoAct 글로벌K컬처밸류체인액티브", "code": "0132D0", "source": "samsung", "params": {"fund_id": "2ETFS5"}},
         ],
     },
@@ -56,7 +56,7 @@ SHEETS = [
         "etfs": [
             {"name": "KoAct 배당성장액티브", "code": "0162D0", "source": "samsung", "params": {"fund_id": "2ETFM2"}},
             {"name": "TIME Korea플러스배당액티브", "code": "441800", "source": "time", "params": {"idx": "12"}},
-            {"name": "TIGER 코스닥액티브", "code": "0204S0", "source": "tiger", "params": {"ksdFund": "KR70204S0008"}},
+            {"name": "TIGER 코스닥액티브", "code": "0204S0", "source": "tiger", "params": {"ksdFund": "KR70204S0006"}},
         ],
     },
     {
