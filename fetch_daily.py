@@ -167,12 +167,12 @@ def fetch_plus(etf, date):
         return []
 
 # ── 미래에셋 TIGER ──────────────────────────────────────────────────
-# 2026-06-14: requests 403 → Playwright로 변경 (GitHub Actions IP 차단 우회)
+# 2026-06-14: Playwright로 변경 (GitHub Actions IP 차단 우회)
+# page.evaluate로 fetch 호출 후 파싱
 async def fetch_tiger_async(etf, date):
     ksd_fund = etf['params']['ksdFund']
     date_fmt = date.strftime('%Y%m%d')
     base_url = f'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/index.do?ksdFund={ksd_fund}'
-    ajax_url = 'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/pdf.ajax'
     try:
         from playwright.async_api import async_playwright
         async with async_playwright() as pw:
@@ -181,23 +181,24 @@ async def fetch_tiger_async(etf, date):
                 user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
             )
             page = await context.new_page()
-            # 쿠키 발급
             await page.goto(base_url, wait_until='domcontentloaded', timeout=20000)
-            # pdf.ajax POST
-            response = await page.evaluate(f"""
-                async () => {{
-                    const r = await fetch('{ajax_url}', {{
-                        method: 'POST',
-                        headers: {{
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'Referer': '{base_url}'
-                        }},
-                        body: 'ksdFund={ksd_fund}&trdDd={date_fmt}'
-                    }});
-                    return await r.text();
-                }}
-            """)
+            # pdf.ajax 직접 호출 (쿠키 포함 상태에서)
+            html = await page.evaluate("""
+                (args) => {
+                    return new Promise((resolve, reject) => {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/tigeretf/ko/product/search/detail/pdf.ajax', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onload = () => resolve(xhr.responseText);
+                        xhr.onerror = () => reject('XHR error');
+                        xhr.send('ksdFund=' + args.ksdFund + '&trdDd=' + args.trdDd);
+                    });
+                }
+            """, {'ksdFund': ksd_fund, 'trdDd': date_fmt})
             await browser.close()
+            if not html or len(html) < 50:
+                print(f'  TIGER {ksd_fund} 응답 없음 (len={len(html) if html else 0})')
+                return []
             # HTML 테이블 파싱
             from html.parser import HTMLParser
             class TableParser(HTMLParser):
@@ -214,7 +215,7 @@ async def fetch_tiger_async(etf, date):
                 def handle_data(self, data):
                     if self.in_td: self.cur.append(data.strip())
             p = TableParser()
-            p.feed(response)
+            p.feed(html)
             result = []
             for row in p.rows[1:]:
                 if len(row) < 2: continue
@@ -227,6 +228,7 @@ async def fetch_tiger_async(etf, date):
                         result.append({'name': name, 'qty': qty, 'weight': pct})
                 except:
                     pass
+            print(f'  TIGER {ksd_fund} → {len(result)}개 (html {len(html)}bytes)')
             return result
     except Exception as e:
         print(f'  TIGER {ksd_fund} 오류: {e}')
