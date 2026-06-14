@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # fetch_daily.py - 운용사별 ETF holdings 수집 + 일별 스냅샷 저장
+# 수정 이력:
+#   2026-06-14: TIME 도메인 변경 (timefolio.co.kr → timeetf.co.kr)
+#               TIGER 403 fix: Session으로 쿠키 발급 후 요청
+#               PLUS 도메인 변경 (hanwhafund.co.kr → plusetf.co.kr, API 미확인)
 
 import os, json, re, requests, asyncio
 from datetime import datetime, timedelta
@@ -36,6 +40,7 @@ def prev_biz(d):
         d2 -= timedelta(days=1)
     return d2
 
+# ── 삼성액티브 (KoAct) ─────────────────────────────────────────
 def fetch_samsung(etf, date):
     fund_id = etf['params']['fund_id']
     gijun = date.strftime('%Y.%m.%d')
@@ -65,6 +70,7 @@ def fetch_samsung(etf, date):
         print(f'  Samsung {fund_id} 오류: {e}')
         return []
 
+# ── KODEX (삼성자산운용) ────────────────────────────────────────
 def fetch_kodex(etf, date):
     fund_id = etf['params']['fund_id']
     gijun = date.strftime('%Y.%m.%d')
@@ -94,29 +100,29 @@ def fetch_kodex(etf, date):
         print(f'  KODEX {fund_id} 오류: {e}')
         return []
 
+# ── 타임폴리오 (TIME) ───────────────────────────────────────────
+# 2026-06-14: timeetf.co.kr 로 도메인 변경, past_pdf_json.php 엔드포인트
+# 응답: {"today": [{"prodNm": "종목명", "wei": "비중", "increaseWei": "신규"}, ...]}
 def fetch_time(etf, date):
     idx = etf['params']['idx']
     date_fmt = date.strftime('%Y%m%d')
-    url = f'https://www.timefolio.co.kr/fund/etfPdfAjax.do?idx={idx}&standardDt={date_fmt}'
+    url = f'https://timeetf.co.kr/past_pdf_json.php?idx={idx}&period={date_fmt}'
     try:
-        r = requests.get(url, headers={**HEADERS, 'Referer': 'https://www.timefolio.co.kr/'}, timeout=15)
+        r = requests.get(url, headers={**HEADERS, 'Referer': 'https://timeetf.co.kr/'}, timeout=15)
         if r.status_code != 200:
             print(f'  TIME idx={idx} HTTP {r.status_code}')
             return []
         data = r.json()
-        items = data.get('list') or data.get('data') or []
+        items = data.get('today') or []
         result = []
         for item in items:
-            name = str(item.get('isu_nm') or item.get('isunm') or item.get('name') or '').strip()
-            qty  = item.get('hld_qty') or item.get('qty') or 0
-            pct  = item.get('wgt') or item.get('weight') or item.get('ratio') or 0
+            name = str(item.get('prodNm') or '').strip()
+            pct  = item.get('wei') or 0
             if not name or '현금' in name:
                 continue
             try:
-                q = int(str(qty).replace(',', ''))
                 p = float(str(pct).replace(',', '')) if pct else 0.0
-                if q > 0:
-                    result.append({'name': name, 'qty': q, 'weight': p})
+                result.append({'name': name, 'qty': 0, 'weight': p})
             except:
                 pass
         return result
@@ -124,6 +130,9 @@ def fetch_time(etf, date):
         print(f'  TIME idx={idx} 오류: {e}')
         return []
 
+# ── 한화 PLUS ───────────────────────────────────────────────────
+# TODO: plusetf.co.kr 신규 API 엔드포인트 확인 필요
+# 임시: 기존 hanwhafund.co.kr XML API 유지 (500 에러 발생 중)
 def fetch_plus(etf, date):
     fund_code = etf['params']['fund_code']
     date_fmt = date.strftime('%Y%m%d')
@@ -131,7 +140,7 @@ def fetch_plus(etf, date):
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
         if r.status_code != 200:
-            print(f'  PLUS {fund_code} HTTP {r.status_code}')
+            print(f'  PLUS {fund_code} HTTP {r.status_code} (TODO: plusetf.co.kr 신규 API 확인 필요)')
             return []
         from xml.etree import ElementTree as ET
         root = ET.fromstring(r.text)
@@ -154,15 +163,22 @@ def fetch_plus(etf, date):
         print(f'  PLUS {fund_code} 오류: {e}')
         return []
 
+# ── 미래에셋 TIGER ──────────────────────────────────────────────
+# 2026-06-14: Session으로 먼저 메인 페이지 GET → 쿠키 발급 후 pdf.ajax 요청
 def fetch_tiger(etf, date):
     ksd_fund = etf['params']['ksdFund']
     date_fmt = date.strftime('%Y%m%d')
-    url = 'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/pdf.ajax'
+    base_url = f'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/index.do?ksdFund={ksd_fund}'
+    ajax_url = 'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/pdf.ajax'
     try:
-        r = requests.post(url, headers={
-            **HEADERS,
+        session = requests.Session()
+        session.headers.update(HEADERS)
+        # 쿠키 발급
+        session.get(base_url, timeout=15)
+        # holdings 요청
+        r = session.post(ajax_url, headers={
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Referer': f'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/index.do?ksdFund={ksd_fund}',
+            'Referer': base_url,
         }, data=f'ksdFund={ksd_fund}&trdDd={date_fmt}', timeout=15)
         if r.status_code != 200:
             print(f'  TIGER {ksd_fund} HTTP {r.status_code}')
@@ -200,6 +216,7 @@ def fetch_tiger(etf, date):
         print(f'  TIGER {ksd_fund} 오류: {e}')
         return []
 
+# ── VITA ────────────────────────────────────────────────────────
 async def fetch_vita_async(etf, date):
     fund_cd = etf['params']['fundCD']
     try:
