@@ -40,7 +40,7 @@ SHEETS = [
         "name": "K컬처",
         "etfs": [
             {"name": "TIME K컬처액티브", "code": "410870", "source": "time", "params": {"idx": "1"}},
-            {"name": "KoAct 글로벌K컬처밸류체인액티브", "code": "0132D0", "source": "samsung", "params": {"fund_id": "2ETFS5"}},
+            {"name": "KoAct 글로벌K컬처밸류체인액티브", "code": "0132D0", "source": "samsung", "params": {"fund_id": "2ETFT2"}},
         ],
     },
     {
@@ -72,7 +72,7 @@ SHEETS = [
         "name": "기타/혁신",
         "etfs": [
             {"name": "TIME K이노베이션액티브", "code": "385710", "source": "time", "params": {"idx": "17"}},
-            {"name": "KoAct 반도체&2차전지핵심소재액티브", "code": "482030", "source": "samsung", "params": {"fund_id": "2ETFN2"}},
+            {"name": "KoAct 반도체&2차전지핵심소재액티브", "code": "482030", "source": "samsung", "params": {"fund_id": "2ETFM8"}},
             {"name": "KODEX 로봇액티브", "code": "445290", "source": "kodex", "params": {"fund_id": "2ETFH5"}},
             {"name": "VITA MZ소비액티브", "code": "422260", "source": "vita", "params": {"fundCD": "E0001"}},
             {"name": "PLUS K제조업핵심기업액티브", "code": "0166S0", "source": "plus", "params": {"fund_code": "006400"}},
