@@ -318,21 +318,30 @@ async def _parse_rows(rows, name_col, qty_col, weight_col):
             pass
     return result
 
+# 헤더에 keywords가 모두 들어간 테이블의 tbody tr 반환 (구성종목 표 식별용)
+async def _holdings_rows(page, keywords=('종목명', '수량', '비중')):
+    tables = await page.query_selector_all('table')
+    for t in tables:
+        ths = await t.query_selector_all('th')
+        htext = ' '.join([(await th.inner_text()) for th in ths])
+        if all(k in htext for k in keywords):
+            return await t.query_selector_all('tbody tr')
+    return []
+
 # ── WON (우리자산운용, wooriam.kr) ───────────────────────────────────
-# 과거조회 가능 ✅ / 단 페이지엔 상위10만 표시 (전체는 엑셀다운로드)
-# #pdfSearchDate 에 YYYY.MM.DD 넣고 setPDFList() 호출 → 테이블 갱신
-# 테이블 컬럼: 종목코드 / 종목명 / 수량(주) / 평가금액 / 비중
+# 실측(2026-06-16): 헤더 [번호, 종목코드, 종목명, 수량(주)/액면(원), 평가금액(원), 비중(%)]
+#   → td 컬럼: 종목명=2, 수량=3, 비중=5  / 상위 10종목만 페이지 노출
+# 과거조회 ✅: #pdfSearchDate(YYYY.MM.DD) 세팅 후 setPDFList() 호출 → 표 갱신 확인됨
 async def fetch_won_async(etf, date):
     slug = etf['params']['view_slug']
     d = date.strftime('%Y.%m.%d')
-    url = f'https://www.wooriam.kr/investment/etf-view/{slug}'   # TODO: www 유무 실서버 확인
+    url = f'https://www.wooriam.kr/investment/etf-view/{slug}'
     try:
         from playwright.async_api import async_playwright
         async with async_playwright() as pw:
             browser = await pw.chromium.launch(headless=True)
             page = await (await browser.new_context(user_agent=HEADERS['User-Agent'])).new_page()
             await page.goto(url, wait_until='networkidle', timeout=25000)
-            # 과거날짜 조회: 날짜 input 세팅 후 갱신 함수 호출
             await page.evaluate("""
                 (d) => {
                     const el = document.querySelector('#pdfSearchDate');
@@ -340,12 +349,11 @@ async def fetch_won_async(etf, date):
                     if (typeof setPDFList === 'function') { setPDFList(); }
                 }
             """, d)
-            await page.wait_for_timeout(2500)
-            # TODO(맥미니): 구성종목 테이블 셀렉터 확인. 우선 페이지 내 모든 table tbody tr 스캔
-            rows = await page.query_selector_all('table tbody tr')
-            result = await _parse_rows(rows, name_col=1, qty_col=2, weight_col=4)
+            await page.wait_for_timeout(2800)
+            rows = await _holdings_rows(page, ('종목명', '수량', '비중'))
+            result = await _parse_rows(rows, name_col=2, qty_col=3, weight_col=5)
             await browser.close()
-            print(f'  WON {slug} → {len(result)}개 (상위10 한정 가능)')
+            print(f'  WON {slug} → {len(result)}개 (상위10)')
             return result
     except Exception as e:
         print(f'  WON {slug} 오류: {e}')
@@ -355,22 +363,25 @@ def fetch_won(etf, date):
     return asyncio.run(fetch_won_async(etf, date))
 
 # ── RISE (KB자산운용, riseetf.co.kr) ─────────────────────────────────
-# 현재보유만 확보 (과거조회 ajax는 CSRF/토큰 요구 → 일별 적재로 WoW 누적)
-# 테이블 컬럼: 종목코드 / 종목명 / 수량㈜ / 보유비중 / 평가금액
+# 실측(2026-06-16): 구성종목(PDF) 탭 = table.tr_border.align_center_m
+#   헤더 [번호, 종목명, 종목코드, 수량㈜, 보유비중(%), 평가금액(원)] (번호는 th)
+#   → tbody td 컬럼: 종목명=0, 수량=2, 비중=3
+#   현재보유 수집(일별 적재로 WoW 누적). 과거조회는 #datepicker_pdf 있으나 미사용.
+#   URL에 ?searchFlag=viewtab3 붙이면 구성종목 탭 바로 로드.
 async def fetch_rise_async(etf, date):
     finder_id = etf['params']['finder_id']
-    url = f'https://www.riseetf.co.kr/prod/finderDetail/{finder_id}'
+    url = f'https://www.riseetf.co.kr/prod/finderDetail/{finder_id}?searchFlag=viewtab3'
     try:
         from playwright.async_api import async_playwright
         async with async_playwright() as pw:
             browser = await pw.chromium.launch(headless=True)
             page = await (await browser.new_context(user_agent=HEADERS['User-Agent'])).new_page()
             await page.goto(url, wait_until='networkidle', timeout=25000)
-            await page.wait_for_timeout(2000)
-            # TODO(맥미니): 구성종목 탭이 클릭 필요할 수 있음(PDF/구성종목 탭). 실DOM 확인.
-            # 컬럼 순서가 비중<->평가금액 다를 수 있으니 헤더 보고 보정.
-            rows = await page.query_selector_all('table tbody tr')
-            result = await _parse_rows(rows, name_col=1, qty_col=2, weight_col=3)
+            await page.wait_for_timeout(2500)
+            rows = await page.query_selector_all('table.tr_border.align_center_m tbody tr')
+            if not rows:
+                rows = await _holdings_rows(page, ('종목명', '수량', '비중'))
+            result = await _parse_rows(rows, name_col=0, qty_col=2, weight_col=3)
             await browser.close()
             print(f'  RISE {finder_id} → {len(result)}개 (현재보유)')
             return result
@@ -382,9 +393,12 @@ def fetch_rise(etf, date):
     return asyncio.run(fetch_rise_async(etf, date))
 
 # ── UNICORN (현대자산운용, hyundaiam.com) ────────────────────────────
-# 현재보유만 (datePdf 숨김 + 검색버튼 없음 → 과거조회 어려움)
+# 실측(2026-06-16): 자산구성/공시 탭, 헤더 [No, 종목코드, 종목명, 수량(주), 평가금액(원), 비중]
+#   → td 컬럼: 종목명=2, 수량=3, 비중=5 (비중값에 % 포함 → 파서가 제거)
+# 과거조회 ✅: #datePdf(YYYY-MM-DD) 세팅 후 #btnQueryPdf 클릭 → 표 갱신 확인됨
 async def fetch_unicorn_async(etf, date):
     view_id = etf['params']['view_id']
+    d = date.strftime('%Y-%m-%d')
     url = f'https://www.hyundaiam.com/kor/HD-KP-FG/HD-KP-FG-07-D.html?id={view_id}'
     try:
         from playwright.async_api import async_playwright
@@ -392,12 +406,23 @@ async def fetch_unicorn_async(etf, date):
             browser = await pw.chromium.launch(headless=True)
             page = await (await browser.new_context(user_agent=HEADERS['User-Agent'])).new_page()
             await page.goto(url, wait_until='networkidle', timeout=25000)
-            await page.wait_for_timeout(2000)
-            # TODO(맥미니): 구성종목 테이블 셀렉터 확인. 컬럼 순서 헤더 보고 보정.
-            rows = await page.query_selector_all('table tbody tr')
-            result = await _parse_rows(rows, name_col=1, qty_col=2, weight_col=3)
+            try:
+                await page.click('text=자산구성/공시', timeout=4000)
+            except Exception:
+                pass
+            await page.evaluate("""
+                (d) => {
+                    const dp = document.querySelector('#datePdf');
+                    if (dp) { dp.value = d; dp.dispatchEvent(new Event('change', {bubbles:true})); }
+                    const b = document.querySelector('#btnQueryPdf');
+                    if (b) { b.click(); }
+                }
+            """, d)
+            await page.wait_for_timeout(2800)
+            rows = await _holdings_rows(page, ('종목명', '수량', '비중'))
+            result = await _parse_rows(rows, name_col=2, qty_col=3, weight_col=5)
             await browser.close()
-            print(f'  UNICORN {view_id} → {len(result)}개 (현재보유)')
+            print(f'  UNICORN {view_id} → {len(result)}개')
             return result
     except Exception as e:
         print(f'  UNICORN {view_id} 오류: {e}')
