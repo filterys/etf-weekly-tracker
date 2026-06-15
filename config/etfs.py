@@ -3,12 +3,17 @@ import os
 
 TELEGRAM_CHAT_ID = int(os.environ.get('TG_CHAT_ID', '-1003794316481'))
 
-# source별 fetch 방식
-# samsung : samsungactive.co.kr API  (fund_id)
-# time    : timefolio API            (idx)
-# plus    : PLUS XML API             (fund_code)
-# tiger   : miraeasset pdf.ajax      (ksdFund)
-# kodex   : samsungfund.com API      (fund_id)
+# ── source별 fetch 방식 ────────────────────────────────────────────
+# samsung : samsungactive.co.kr API   (fund_id)   ← KoAct + KODEX 전부 여기
+# time    : timeetf.co.kr m11_view    (idx)
+# plus    : plusetf.co.kr pdf/list    (fund_code)
+# tiger   : miraeasset prdct-item-list(ksdFund, Playwright)
+# unicorn : hyundaiam.com (현대)       (view_id,  Playwright) ← 현재보유만
+# won     : wooriam.kr   (우리)        (view_slug, Playwright) ← 과거조회 가능, 상위10만
+# rise    : riseetf.co.kr(KB)          (finder_id, Playwright) ← 현재보유만
+#
+# 목표 구조: 8탭 25펀드 (2026-06-15 Mac Mini 이전 작업노트 기준)
+# 탭 이름의 '/'는 openpyxl 시트명 금지문자라 '·'로 표기.
 
 SHEETS = [
     {
@@ -17,6 +22,16 @@ SHEETS = [
             {"name": "KoAct 코스닥액티브", "code": "0163Y0", "source": "samsung", "params": {"fund_id": "2ETFU6"}},
             {"name": "TIME 코스닥액티브", "code": "0162Y0", "source": "time", "params": {"idx": "24"}},
             {"name": "PLUS 코스닥150액티브", "code": "0166N0", "source": "plus", "params": {"fund_code": "006399"}},
+            {"name": "TIGER 코스닥액티브", "code": "0204S0", "source": "tiger", "params": {"ksdFund": "KR70204S0006"}},
+        ],
+    },
+    {
+        "name": "반도체",
+        "etfs": [
+            {"name": "UNICORN SK하이닉스밸류체인액티브", "code": "494220", "source": "unicorn", "params": {"view_id": "2682049"}},
+            {"name": "WON 반도체밸류체인액티브", "code": "474590", "source": "won", "params": {"view_slug": "ts8ym1V3HHeDnN9S"}},
+            {"name": "RISE 비메모리반도체액티브", "code": "388420", "source": "rise", "params": {"finder_id": "44B9"}},
+            {"name": "TIGER 코리아테크액티브", "code": "471780", "source": "tiger", "params": {"ksdFund": "KR7471780007"}},
         ],
     },
     {
@@ -28,27 +43,19 @@ SHEETS = [
         ],
     },
     {
-        "name": "AI/로봇",
+        "name": "AI·로봇",
         "etfs": [
             {"name": "TIME 글로벌AI인공지능액티브", "code": "456600", "source": "time", "params": {"idx": "6"}},
             {"name": "KoAct 글로벌AI&로봇액티브", "code": "471040", "source": "samsung", "params": {"fund_id": "2ETFL3"}},
             {"name": "KoAct AI인프라액티브", "code": "487130", "source": "samsung", "params": {"fund_id": "2ETFN8"}},
-            {"name": "TIGER 코리아테크액티브", "code": "471780", "source": "tiger", "params": {"ksdFund": "KR7471780007"}},
+            {"name": "KODEX 로봇액티브", "code": "445290", "source": "samsung", "params": {"fund_id": "2ETFH5"}},
         ],
     },
     {
         "name": "K컬처",
         "etfs": [
-            {"name": "TIME K컬처액티브", "code": "410870", "source": "time", "params": {"idx": "1"}},
             {"name": "KoAct 글로벌K컬처밸류체인액티브", "code": "0132D0", "source": "samsung", "params": {"fund_id": "2ETFT2"}},
-        ],
-    },
-    {
-        "name": "방산",
-        "etfs": [
-            {"name": "TIME 글로벌우주테크&방산액티브", "code": "478150", "source": "time", "params": {"idx": "22"}},
-            {"name": "KoAct K수출핵심기업TOP30액티브", "code": "0074K0", "source": "samsung", "params": {"fund_id": "2ETFR6"}},
-            {"name": "PLUS K방산 [패시브]", "code": "449450", "source": "plus", "params": {"fund_code": "006388"}, "is_passive": True},
+            {"name": "TIME K컬처액티브", "code": "410870", "source": "time", "params": {"idx": "1"}},
         ],
     },
     {
@@ -56,25 +63,21 @@ SHEETS = [
         "etfs": [
             {"name": "KoAct 배당성장액티브", "code": "0162D0", "source": "samsung", "params": {"fund_id": "2ETFM2"}},
             {"name": "TIME Korea플러스배당액티브", "code": "441800", "source": "time", "params": {"idx": "12"}},
-            {"name": "TIGER 코스닥액티브", "code": "0204S0", "source": "tiger", "params": {"ksdFund": "KR70204S0006"}},
         ],
     },
     {
-        "name": "신재생/친환경",
+        "name": "신재생·친환경",
         "etfs": [
             {"name": "KODEX 신재생에너지액티브", "code": "385510", "source": "samsung", "params": {"fund_id": "2ETFE5"}},
             {"name": "TIMEFOLIO K신재생에너지액티브", "code": "404120", "source": "time", "params": {"idx": "16"}},
-            
             {"name": "KODEX K-친환경조선해운액티브", "code": "445150", "source": "samsung", "params": {"fund_id": "2ETFH6"}},
         ],
     },
     {
-        "name": "기타/혁신",
+        "name": "기타·혁신",
         "etfs": [
             {"name": "TIME K이노베이션액티브", "code": "385710", "source": "time", "params": {"idx": "17"}},
             {"name": "KoAct 반도체&2차전지핵심소재액티브", "code": "482030", "source": "samsung", "params": {"fund_id": "2ETFM8"}},
-            {"name": "KODEX 로봇액티브", "code": "445290", "source": "samsung", "params": {"fund_id": "2ETFH5"}},
-            
             {"name": "PLUS K제조업핵심기업액티브", "code": "0166S0", "source": "plus", "params": {"fund_code": "006400"}},
         ],
     },
