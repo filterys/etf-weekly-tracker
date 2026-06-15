@@ -62,10 +62,10 @@ SHEETS = [
     {
         "name": "신재생/친환경",
         "etfs": [
-            {"name": "KODEX 신재생에너지액티브", "code": "385510", "source": "kodex", "params": {"fund_id": "2ETFE5"}},
+            {"name": "KODEX 신재생에너지액티브", "code": "385510", "source": "samsung", "params": {"fund_id": "2ETFE5"}},
             {"name": "TIMEFOLIO K신재생에너지액티브", "code": "404120", "source": "time", "params": {"idx": "16"}},
-            {"name": "KoAct 글로벌친환경전력인프라액티브", "code": "475070", "source": "samsung", "params": {"fund_id": "2ETFM9"}},
-            {"name": "KODEX K-친환경조선해운액티브", "code": "445150", "source": "kodex", "params": {"fund_id": "2ETFH6"}},
+            
+            {"name": "KODEX K-친환경조선해운액티브", "code": "445150", "source": "samsung", "params": {"fund_id": "2ETFH6"}},
         ],
     },
     {
@@ -73,7 +73,7 @@ SHEETS = [
         "etfs": [
             {"name": "TIME K이노베이션액티브", "code": "385710", "source": "time", "params": {"idx": "17"}},
             {"name": "KoAct 반도체&2차전지핵심소재액티브", "code": "482030", "source": "samsung", "params": {"fund_id": "2ETFM8"}},
-            {"name": "KODEX 로봇액티브", "code": "445290", "source": "kodex", "params": {"fund_id": "2ETFH5"}},
+            {"name": "KODEX 로봇액티브", "code": "445290", "source": "samsung", "params": {"fund_id": "2ETFH5"}},
             {"name": "VITA MZ소비액티브", "code": "422260", "source": "vita", "params": {"fundCD": "E0001"}},
             {"name": "PLUS K제조업핵심기업액티브", "code": "0166S0", "source": "plus", "params": {"fund_code": "006400"}},
         ],
