@@ -40,6 +40,45 @@ def prev_biz(d):
         d2 -= timedelta(days=1)
     return d2
 
+# ── 주간/WoW 헬퍼 (휴일은 데이터 유무로 자동 판별) ──────────────────
+def week_bounds(d):
+    """d가 속한 주의 (월요일, 금요일)."""
+    mon = d - timedelta(days=d.weekday())
+    return mon, mon + timedelta(days=4)
+
+def snapshot_has_data(snap):
+    """스냅샷에 실제 보유종목 데이터가 하나라도 있으면 True (빈/휴일 스냅샷 = False)."""
+    return bool(snap) and any(v for v in snap.values())
+
+def last_data_date_in_range(start, end):
+    """[start, end] 구간에서 '데이터가 있는' 가장 마지막 날짜. 휴일/주말은 자동 스킵. 없으면 None."""
+    d = end
+    while d >= start:
+        if snapshot_has_data(load_snapshot(d)):
+            return d
+        d -= timedelta(days=1)
+    return None
+
+def last_data_date_before(d, max_back=14):
+    """d 직전(미포함)으로 데이터가 있는 가장 가까운 날짜. 휴일/주말 자동 스킵."""
+    cur = d - timedelta(days=1)
+    limit = d - timedelta(days=max_back)
+    while cur >= limit:
+        if snapshot_has_data(load_snapshot(cur)):
+            return cur
+        cur -= timedelta(days=1)
+    return None
+
+def get_wow_pair(report_date):
+    """(직전주 마지막 거래일, 이번주 마지막 거래일) — 둘 다 '데이터 있는' 날 기준.
+    이번주 금요일이 휴일이면 이번주 목요일, 지난주 금요일이 휴일이면 지난주 목요일이 자동 선택됨."""
+    this_mon, this_fri = week_bounds(report_date)
+    this_ref = last_data_date_in_range(this_mon, min(this_fri, report_date))
+    prev_mon = this_mon - timedelta(days=7)
+    prev_fri = prev_mon + timedelta(days=4)
+    prev_ref = last_data_date_in_range(prev_mon, prev_fri)
+    return prev_ref, this_ref
+
 # ── 삼성액티브 (KoAct) ─────────────────────────────────────────
 def fetch_samsung(etf, date):
     fund_id = etf['params']['fund_id']
@@ -253,6 +292,120 @@ async def fetch_vita_async(etf, date):
 def fetch_vita(etf, date):
     return asyncio.run(fetch_vita_async(etf, date))
 
+# ════════════════════════════════════════════════════════════════════
+# 반도체 탭 신규 3종 — 맥미니(KB/우리 차단 없음)에서 동작 검증 필요
+# 아래 셀렉터/컬럼인덱스는 작업노트 기준 추정값 → 맥미니에서 실DOM 확인 후 보정
+# ════════════════════════════════════════════════════════════════════
+
+# 공통: Playwright 테이블 행 → holdings 파서
+async def _parse_rows(rows, name_col, qty_col, weight_col):
+    result = []
+    for row in rows:
+        cells = await row.query_selector_all('td')
+        if len(cells) <= max(name_col, qty_col, weight_col):
+            continue
+        name = (await cells[name_col].inner_text()).strip()
+        if not name or '현금' in name or '소계' in name or '합계' in name:
+            continue
+        try:
+            qty_t = (await cells[qty_col].inner_text()).strip().replace(',', '').replace('주', '')
+            pct_t = (await cells[weight_col].inner_text()).strip().replace(',', '').replace('%', '')
+            qty = int(float(qty_t)) if qty_t and qty_t.replace('.', '').isdigit() else 0
+            pct = float(pct_t) if pct_t else 0.0
+            if qty > 0:
+                result.append({'name': name, 'qty': qty, 'weight': pct})
+        except Exception:
+            pass
+    return result
+
+# ── WON (우리자산운용, wooriam.kr) ───────────────────────────────────
+# 과거조회 가능 ✅ / 단 페이지엔 상위10만 표시 (전체는 엑셀다운로드)
+# #pdfSearchDate 에 YYYY.MM.DD 넣고 setPDFList() 호출 → 테이블 갱신
+# 테이블 컬럼: 종목코드 / 종목명 / 수량(주) / 평가금액 / 비중
+async def fetch_won_async(etf, date):
+    slug = etf['params']['view_slug']
+    d = date.strftime('%Y.%m.%d')
+    url = f'https://www.wooriam.kr/investment/etf-view/{slug}'   # TODO: www 유무 실서버 확인
+    try:
+        from playwright.async_api import async_playwright
+        async with async_playwright() as pw:
+            browser = await pw.chromium.launch(headless=True)
+            page = await (await browser.new_context(user_agent=HEADERS['User-Agent'])).new_page()
+            await page.goto(url, wait_until='networkidle', timeout=25000)
+            # 과거날짜 조회: 날짜 input 세팅 후 갱신 함수 호출
+            await page.evaluate("""
+                (d) => {
+                    const el = document.querySelector('#pdfSearchDate');
+                    if (el) { el.value = d; }
+                    if (typeof setPDFList === 'function') { setPDFList(); }
+                }
+            """, d)
+            await page.wait_for_timeout(2500)
+            # TODO(맥미니): 구성종목 테이블 셀렉터 확인. 우선 페이지 내 모든 table tbody tr 스캔
+            rows = await page.query_selector_all('table tbody tr')
+            result = await _parse_rows(rows, name_col=1, qty_col=2, weight_col=4)
+            await browser.close()
+            print(f'  WON {slug} → {len(result)}개 (상위10 한정 가능)')
+            return result
+    except Exception as e:
+        print(f'  WON {slug} 오류: {e}')
+        return []
+
+def fetch_won(etf, date):
+    return asyncio.run(fetch_won_async(etf, date))
+
+# ── RISE (KB자산운용, riseetf.co.kr) ─────────────────────────────────
+# 현재보유만 확보 (과거조회 ajax는 CSRF/토큰 요구 → 일별 적재로 WoW 누적)
+# 테이블 컬럼: 종목코드 / 종목명 / 수량㈜ / 보유비중 / 평가금액
+async def fetch_rise_async(etf, date):
+    finder_id = etf['params']['finder_id']
+    url = f'https://www.riseetf.co.kr/prod/finderDetail/{finder_id}'
+    try:
+        from playwright.async_api import async_playwright
+        async with async_playwright() as pw:
+            browser = await pw.chromium.launch(headless=True)
+            page = await (await browser.new_context(user_agent=HEADERS['User-Agent'])).new_page()
+            await page.goto(url, wait_until='networkidle', timeout=25000)
+            await page.wait_for_timeout(2000)
+            # TODO(맥미니): 구성종목 탭이 클릭 필요할 수 있음(PDF/구성종목 탭). 실DOM 확인.
+            # 컬럼 순서가 비중<->평가금액 다를 수 있으니 헤더 보고 보정.
+            rows = await page.query_selector_all('table tbody tr')
+            result = await _parse_rows(rows, name_col=1, qty_col=2, weight_col=3)
+            await browser.close()
+            print(f'  RISE {finder_id} → {len(result)}개 (현재보유)')
+            return result
+    except Exception as e:
+        print(f'  RISE {finder_id} 오류: {e}')
+        return []
+
+def fetch_rise(etf, date):
+    return asyncio.run(fetch_rise_async(etf, date))
+
+# ── UNICORN (현대자산운용, hyundaiam.com) ────────────────────────────
+# 현재보유만 (datePdf 숨김 + 검색버튼 없음 → 과거조회 어려움)
+async def fetch_unicorn_async(etf, date):
+    view_id = etf['params']['view_id']
+    url = f'https://www.hyundaiam.com/kor/HD-KP-FG/HD-KP-FG-07-D.html?id={view_id}'
+    try:
+        from playwright.async_api import async_playwright
+        async with async_playwright() as pw:
+            browser = await pw.chromium.launch(headless=True)
+            page = await (await browser.new_context(user_agent=HEADERS['User-Agent'])).new_page()
+            await page.goto(url, wait_until='networkidle', timeout=25000)
+            await page.wait_for_timeout(2000)
+            # TODO(맥미니): 구성종목 테이블 셀렉터 확인. 컬럼 순서 헤더 보고 보정.
+            rows = await page.query_selector_all('table tbody tr')
+            result = await _parse_rows(rows, name_col=1, qty_col=2, weight_col=3)
+            await browser.close()
+            print(f'  UNICORN {view_id} → {len(result)}개 (현재보유)')
+            return result
+    except Exception as e:
+        print(f'  UNICORN {view_id} 오류: {e}')
+        return []
+
+def fetch_unicorn(etf, date):
+    return asyncio.run(fetch_unicorn_async(etf, date))
+
 FETCHERS = {
     'samsung': fetch_samsung,
     'kodex':   fetch_kodex,
@@ -260,6 +413,9 @@ FETCHERS = {
     'plus':    fetch_plus,
     'tiger':   fetch_tiger,
     'vita':    fetch_vita,
+    'won':     fetch_won,
+    'rise':    fetch_rise,
+    'unicorn': fetch_unicorn,
 }
 
 def fetch_holdings(etf, date):
@@ -311,8 +467,8 @@ def detect_changes(today_snap, prev_snap):
 
 def main():
     today = get_target_date()
-    prev  = prev_biz(today)
-    print(f'=== 수집일: {date_str(today)} (전일: {date_str(prev)}) ===')
+    prev  = last_data_date_before(today) or prev_biz(today)
+    print(f'=== 수집일: {date_str(today)} (직전 거래일: {date_str(prev)}) ===')
     prev_snaps = load_snapshot(prev)
     today_snaps = {}
     for etf in ALL_ETFS:
@@ -321,10 +477,20 @@ def main():
         holdings = fetch_holdings(etf, today)
         today_snaps[name] = holdings
         print(f'  → {len(holdings)}개 종목')
-    if not DRY_RUN:
-        save_snapshot(today, today_snaps)
-    else:
+    if DRY_RUN:
         print('[DRY_RUN] 스냅샷 저장 생략')
+    else:
+        n_with_data = sum(1 for v in today_snaps.values() if v)
+        if n_with_data == 0:
+            # 전 종목 0개 = 휴일/비거래일 추정. 이미 데이터 있는 스냅샷이면 덮어쓰지 않음.
+            if snapshot_has_data(load_snapshot(today)):
+                print('  ⚠️ 수집결과 전부 비어있음(휴일 추정) — 기존 스냅샷 유지(미덮어씀)')
+            else:
+                save_snapshot(today, today_snaps)
+                print('  ⚠️ 비거래일 추정(데이터 0개) — 빈 스냅샷 기록')
+        else:
+            save_snapshot(today, today_snaps)
+            print(f'  💾 일간 누적 저장: {n_with_data}/{len(today_snaps)}종목 데이터 확보')
     lines = ['📊 <b>ETF 주간 트래커 일일 리포트</b>']
     lines.append(f'📅 {date_str(today)} 기준\n')
     has_signal = False
