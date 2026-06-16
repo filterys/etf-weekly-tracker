@@ -40,6 +40,15 @@ def prev_biz(d):
         d2 -= timedelta(days=1)
     return d2
 
+def recent_bizdays(d, n=8):
+    """d부터 직전 영업일들로 n개 날짜 리스트. 공시지연/휴일 fallback용."""
+    days = [d]
+    cur = d
+    for _ in range(n - 1):
+        cur = prev_biz(cur)
+        days.append(cur)
+    return days
+
 # ── 주간/WoW 헬퍼 (휴일은 데이터 유무로 자동 판별) ──────────────────
 def week_bounds(d):
     """d가 속한 주의 (월요일, 금요일)."""
@@ -142,35 +151,42 @@ def fetch_kodex(etf, date):
 # ── 타임폴리오 (TIME) ───────────────────────────────────────────
 # 2026-06-14: timeetf.co.kr 로 도메인 변경, past_pdf_json.php 엔드포인트
 # 응답: {"today": [{"prodNm": "종목명", "wei": "비중", "increaseWei": "신규"}, ...]}
-def fetch_time(etf, date):
-    # 2026-06-15: past_pdf_json(상위10 요약) → m11_view.php(전체 구성종목+수량) 파싱
-    idx = etf['params']['idx']
-    pdf_date = date.strftime('%Y-%m-%d')
+def _time_once(idx, d):
+    pdf_date = d.strftime('%Y-%m-%d')
     url = f'https://timeetf.co.kr/m11_view.php?idx={idx}&cate=&pdfDate={pdf_date}'
-    try:
-        r = requests.get(url, headers={**HEADERS, 'Referer': 'https://timeetf.co.kr/'}, timeout=15)
-        if r.status_code != 200:
-            print(f'  TIME idx={idx} HTTP {r.status_code}')
-            return []
-        body = r.text
-        ti = body.find('moreList1')
-        if ti >= 0:
-            tend = body.find('</table>', ti)
-            body = body[ti:tend] if tend > 0 else body[ti:]
-        pat = r'<tr>\s*<td>([^<]*)</td>\s*<td>([^<]+)</td>\s*<td>([\d,]+)</td>\s*<td>[\d,]+</td>\s*<td>([\d.]+)</td>\s*</tr>'
-        result = []
-        for code, name, qty, pct in re.findall(pat, body):
-            name = name.strip()
-            if not name or '현금' in name:
-                continue
-            try:
-                result.append({'name': name, 'qty': int(qty.replace(',', '')), 'weight': float(pct)})
-            except:
-                pass
-        return result
-    except Exception as e:
-        print(f'  TIME idx={idx} 오류: {e}')
+    r = requests.get(url, headers={**HEADERS, 'Referer': 'https://timeetf.co.kr/'}, timeout=15)
+    if r.status_code != 200:
         return []
+    body = r.text
+    ti = body.find('moreList1')
+    if ti >= 0:
+        tend = body.find('</table>', ti)
+        body = body[ti:tend] if tend > 0 else body[ti:]
+    pat = r'<tr>\s*<td>([^<]*)</td>\s*<td>([^<]+)</td>\s*<td>([\d,]+)</td>\s*<td>[\d,]+</td>\s*<td>([\d.]+)</td>\s*</tr>'
+    result = []
+    for code, name, qty, pct in re.findall(pat, body):
+        name = name.strip()
+        if not name or '현금' in name:
+            continue
+        try:
+            result.append({'name': name, 'qty': int(qty.replace(',', '')), 'weight': float(pct)})
+        except:
+            pass
+    return result
+
+def fetch_time(etf, date):
+    # 2026-06-15: m11_view.php(전체 구성종목+수량) 파싱
+    # 2026-06-16: T-1 공시지연 대응 — 데이터 있는 날까지 직전 영업일로 fallback
+    idx = etf['params']['idx']
+    for d in recent_bizdays(date, 8):
+        try:
+            res = _time_once(idx, d)
+        except Exception as e:
+            print(f'  TIME idx={idx} {d} 오류: {e}')
+            res = []
+        if res:
+            return res
+    return []
 
 
 # ── 한화 PLUS ───────────────────────────────────────────────────
@@ -215,8 +231,9 @@ def fetch_plus(etf, date):
 #   prdct-item-list.ajax 가 JSON(rtnData[])으로 제공. listCnt 크게 주면 전체 수신.
 #   GitHub Actions IP 차단은 Playwright 브라우저 컨텍스트로 우회.
 async def fetch_tiger_async(etf, date):
+    # 2026-06-16: prdct-item-list.ajax 정상(memItemname/stockQty/stockRate).
+    # TIGER는 PDF 공시가 ~2영업일 지연 → 데이터 있는 날까지 직전 영업일로 fallback
     ksd_fund = etf['params']['ksdFund']
-    date_fmt = date.strftime('%Y%m%d')
     base_url = f'https://investments.miraeasset.com/tigeretf/ko/product/search/detail/index.do?ksdFund={ksd_fund}'
     try:
         from playwright.async_api import async_playwright
@@ -227,29 +244,31 @@ async def fetch_tiger_async(etf, date):
             )
             page = await context.new_page()
             await page.goto(base_url, wait_until='domcontentloaded', timeout=20000)
-            # 세션 쿠키 포함 상태에서 구성종목 JSON 요청
-            data = await page.evaluate("""
-                async (args) => {
-                    const url = `/tigeretf/ko/product/chart/prdct-item-list.ajax`
-                        + `?ksdFund=${args.ksd}&prfPrd=Week01&fixDate=${args.date}&listCnt=500`;
-                    const r = await fetch(url, {method:'POST', headers:{'X-Requested-With':'XMLHttpRequest'}});
-                    const txt = await r.text();
-                    try { return JSON.parse(txt); } catch(e) { return null; }
-                }
-            """, {'ksd': ksd_fund, 'date': date_fmt})
+            for d in recent_bizdays(date, 8):
+                df = d.strftime('%Y%m%d')
+                data = await page.evaluate("""
+                    async (args) => {
+                        const url = `/tigeretf/ko/product/chart/prdct-item-list.ajax`
+                            + `?ksdFund=${args.ksd}&prfPrd=Week01&fixDate=${args.date}&listCnt=500`;
+                        const r = await fetch(url, {method:'POST', headers:{'X-Requested-With':'XMLHttpRequest'}});
+                        try { return await r.json(); } catch(e) { return null; }
+                    }
+                """, {'ksd': ksd_fund, 'date': df})
+                arr = (data or {}).get('rtnData') or []
+                if arr:
+                    result = []
+                    for item in arr:
+                        name = (item.get('memItemname') or '').strip()
+                        qty = item.get('stockQty') or 0
+                        weight = item.get('stockRate') or 0.0
+                        if name and '현금' not in name and qty and qty > 0:
+                            result.append({'name': name, 'qty': int(qty), 'weight': float(weight)})
+                    await browser.close()
+                    print(f'  TIGER {ksd_fund} → {len(result)}개 ({df})')
+                    return result
             await browser.close()
-            if not data or 'rtnData' not in data:
-                print(f'  TIGER {ksd_fund} 응답 없음/형식오류')
-                return []
-            result = []
-            for item in data['rtnData']:
-                name = (item.get('memItemname') or '').strip()
-                qty = item.get('stockQty') or 0
-                weight = item.get('stockRate') or 0.0
-                if name and '현금' not in name and qty and qty > 0:
-                    result.append({'name': name, 'qty': int(qty), 'weight': float(weight)})
-            print(f'  TIGER {ksd_fund} → {len(result)}개')
-            return result
+            print(f'  TIGER {ksd_fund} → 0개 (최근 영업일 데이터 없음)')
+            return []
     except Exception as e:
         print(f'  TIGER {ksd_fund} 오류: {e}')
         return []
@@ -334,7 +353,6 @@ async def _holdings_rows(page, keywords=('종목명', '수량', '비중')):
 # 과거조회 ✅: #pdfSearchDate(YYYY.MM.DD) 세팅 후 setPDFList() 호출 → 표 갱신 확인됨
 async def fetch_won_async(etf, date):
     slug = etf['params']['view_slug']
-    d = date.strftime('%Y.%m.%d')
     url = f'https://www.wooriam.kr/investment/etf-view/{slug}'
     try:
         from playwright.async_api import async_playwright
@@ -342,19 +360,25 @@ async def fetch_won_async(etf, date):
             browser = await pw.chromium.launch(headless=True)
             page = await (await browser.new_context(user_agent=HEADERS['User-Agent'])).new_page()
             await page.goto(url, wait_until='networkidle', timeout=25000)
-            await page.evaluate("""
-                (d) => {
-                    const el = document.querySelector('#pdfSearchDate');
-                    if (el) { el.value = d; }
-                    if (typeof setPDFList === 'function') { setPDFList(); }
-                }
-            """, d)
-            await page.wait_for_timeout(2800)
-            rows = await _holdings_rows(page, ('종목명', '수량', '비중'))
-            result = await _parse_rows(rows, name_col=2, qty_col=3, weight_col=5)
+            for cand in recent_bizdays(date, 7):
+                d = cand.strftime('%Y.%m.%d')
+                await page.evaluate("""
+                    (d) => {
+                        const el = document.querySelector('#pdfSearchDate');
+                        if (el) { el.value = d; }
+                        if (typeof setPDFList === 'function') { setPDFList(); }
+                    }
+                """, d)
+                await page.wait_for_timeout(2500)
+                rows = await _holdings_rows(page, ('종목명', '수량', '비중'))
+                result = await _parse_rows(rows, name_col=2, qty_col=3, weight_col=5)
+                if result:
+                    await browser.close()
+                    print(f'  WON {slug} → {len(result)}개 (상위10, {d})')
+                    return result
             await browser.close()
-            print(f'  WON {slug} → {len(result)}개 (상위10)')
-            return result
+            print(f'  WON {slug} → 0개')
+            return []
     except Exception as e:
         print(f'  WON {slug} 오류: {e}')
         return []
@@ -398,7 +422,6 @@ def fetch_rise(etf, date):
 # 과거조회 ✅: #datePdf(YYYY-MM-DD) 세팅 후 #btnQueryPdf 클릭 → 표 갱신 확인됨
 async def fetch_unicorn_async(etf, date):
     view_id = etf['params']['view_id']
-    d = date.strftime('%Y-%m-%d')
     url = f'https://www.hyundaiam.com/kor/HD-KP-FG/HD-KP-FG-07-D.html?id={view_id}'
     try:
         from playwright.async_api import async_playwright
@@ -410,20 +433,26 @@ async def fetch_unicorn_async(etf, date):
                 await page.click('text=자산구성/공시', timeout=4000)
             except Exception:
                 pass
-            await page.evaluate("""
-                (d) => {
-                    const dp = document.querySelector('#datePdf');
-                    if (dp) { dp.value = d; dp.dispatchEvent(new Event('change', {bubbles:true})); }
-                    const b = document.querySelector('#btnQueryPdf');
-                    if (b) { b.click(); }
-                }
-            """, d)
-            await page.wait_for_timeout(2800)
-            rows = await _holdings_rows(page, ('종목명', '수량', '비중'))
-            result = await _parse_rows(rows, name_col=2, qty_col=3, weight_col=5)
+            for cand in recent_bizdays(date, 7):
+                d = cand.strftime('%Y-%m-%d')
+                await page.evaluate("""
+                    (d) => {
+                        const dp = document.querySelector('#datePdf');
+                        if (dp) { dp.value = d; dp.dispatchEvent(new Event('change', {bubbles:true})); }
+                        const b = document.querySelector('#btnQueryPdf');
+                        if (b) { b.click(); }
+                    }
+                """, d)
+                await page.wait_for_timeout(2500)
+                rows = await _holdings_rows(page, ('종목명', '수량', '비중'))
+                result = await _parse_rows(rows, name_col=2, qty_col=3, weight_col=5)
+                if result:
+                    await browser.close()
+                    print(f'  UNICORN {view_id} → {len(result)}개 ({d})')
+                    return result
             await browser.close()
-            print(f'  UNICORN {view_id} → {len(result)}개')
-            return result
+            print(f'  UNICORN {view_id} → 0개')
+            return []
     except Exception as e:
         print(f'  UNICORN {view_id} 오류: {e}')
         return []
