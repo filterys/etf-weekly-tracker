@@ -2,113 +2,118 @@
   "KoAct 코스닥액티브": [
     {
       "name": "테스",
-      "qty": 293,
-      "weight": 8.54
+      "qty": 280,
+      "weight": 8.04
     },
     {
       "name": "리노공업",
-      "qty": 380,
-      "weight": 6.35
+      "qty": 397,
+      "weight": 6.23
     },
     {
       "name": "성호전자",
       "qty": 796,
-      "weight": 5.94
+      "weight": 5.53
     },
     {
       "name": "두산테스나",
-      "qty": 146,
-      "weight": 4.09
+      "qty": 136,
+      "weight": 3.61
     },
     {
       "name": "심텍",
       "qty": 162,
-      "weight": 3.37
-    },
-    {
-      "name": "코미코",
-      "qty": 168,
-      "weight": 3.36
+      "weight": 3.52
     },
     {
       "name": "티엘비",
       "qty": 199,
-      "weight": 3.19
+      "weight": 3.27
     },
     {
       "name": "서진시스템",
       "qty": 239,
-      "weight": 2.87
+      "weight": 3.03
+    },
+    {
+      "name": "코미코",
+      "qty": 168,
+      "weight": 3.0
     },
     {
       "name": "피에스케이홀딩스",
       "qty": 117,
-      "weight": 2.85
-    },
-    {
-      "name": "피에스케이",
-      "qty": 96,
-      "weight": 2.61
-    },
-    {
-      "name": "파두",
-      "qty": 151,
-      "weight": 2.44
+      "weight": 2.57
     },
     {
       "name": "알테오젠",
       "qty": 45,
-      "weight": 2.43
+      "weight": 2.55
+    },
+    {
+      "name": "파두",
+      "qty": 151,
+      "weight": 2.52
+    },
+    {
+      "name": "피에스케이",
+      "qty": 85,
+      "weight": 2.29
     },
     {
       "name": "로보티즈",
       "qty": 38,
-      "weight": 2.01
-    },
-    {
-      "name": "티에스이",
-      "qty": 44,
-      "weight": 1.9
+      "weight": 2.05
     },
     {
       "name": "에이비엘바이오",
       "qty": 122,
-      "weight": 1.78
+      "weight": 1.9
     },
     {
-      "name": "리가켐바이오",
-      "qty": 82,
-      "weight": 1.69
+      "name": "티에스이",
+      "qty": 44,
+      "weight": 1.85
     },
     {
       "name": "한중엔시에스",
       "qty": 248,
-      "weight": 1.69
+      "weight": 1.79
+    },
+    {
+      "name": "리가켐바이오",
+      "qty": 82,
+      "weight": 1.77
     },
     {
       "name": "올릭스",
       "qty": 81,
-      "weight": 1.49
+      "weight": 1.59
+    },
+    {
+      "name": "가온칩스",
+      "qty": 154,
+      "weight": 1.48
     },
     {
       "name": "대주전자재료",
       "qty": 73,
-      "weight": 1.41
+      "weight": 1.45
     },
     {
       "name": "비나텍",
       "qty": 77,
-      "weight": 1.3
-    },
-    {
-      "name": "엘티씨",
-      "qty": 142,
-      "weight": 1.29
+      "weight": 1.42
     },
     {
       "name": "동진쎄미켐",
       "qty": 135,
-      "weight": 1.27
+      "weight": 1.33
+    },
+    {
+      "name": "엘티씨",
+      "qty": 142,
+      "weight": 1.23
     },
     {
       "name": "코나아이",
@@ -116,128 +121,113 @@
       "weight": 1.22
     },
     {
-      "name": "오스코텍",
-      "qty": 182,
-      "weight": 1.14
+      "name": "HPSP",
+      "qty": 89,
+      "weight": 1.21
     },
     {
       "name": "하나마이크론",
       "qty": 145,
-      "weight": 1.14
-    },
-    {
-      "name": "가온칩스",
-      "qty": 122,
-      "weight": 1.12
+      "weight": 1.2
     },
     {
       "name": "파마리서치",
       "qty": 24,
-      "weight": 1.11
+      "weight": 1.18
     },
     {
       "name": "레인보우로보틱스",
       "qty": 11,
-      "weight": 1.1
+      "weight": 1.18
     },
     {
       "name": "에코프로",
       "qty": 58,
-      "weight": 1.07
+      "weight": 1.17
     },
     {
-      "name": "주성엔지니어링",
-      "qty": 29,
-      "weight": 1.07
-    },
-    {
-      "name": "알멕",
-      "qty": 114,
-      "weight": 1.05
-    },
-    {
-      "name": "덕산하이메탈",
-      "qty": 447,
-      "weight": 1.04
+      "name": "오스코텍",
+      "qty": 182,
+      "weight": 1.16
     },
     {
       "name": "에코프로비엠",
       "qty": 38,
-      "weight": 1.03
+      "weight": 1.15
+    },
+    {
+      "name": "덕산하이메탈",
+      "qty": 447,
+      "weight": 1.06
+    },
+    {
+      "name": "주성엔지니어링",
+      "qty": 29,
+      "weight": 1.06
     },
     {
       "name": "고영",
       "qty": 165,
-      "weight": 1.03
+      "weight": 1.0
     },
     {
-      "name": "HPSP",
-      "qty": 89,
-      "weight": 1.02
-    },
-    {
-      "name": "한양디지텍",
-      "qty": 213,
-      "weight": 0.96
-    },
-    {
-      "name": "큐리언트",
-      "qty": 233,
-      "weight": 0.95
-    },
-    {
-      "name": "에이치브이엠",
-      "qty": 57,
-      "weight": 0.94
+      "name": "알멕",
+      "qty": 114,
+      "weight": 0.99
     },
     {
       "name": "RFHIC",
       "qty": 76,
-      "weight": 0.94
+      "weight": 0.98
+    },
+    {
+      "name": "큐리언트",
+      "qty": 233,
+      "weight": 0.98
     },
     {
       "name": "제주반도체",
       "qty": 56,
-      "weight": 0.92
-    },
-    {
-      "name": "코세스",
-      "qty": 151,
-      "weight": 0.92
+      "weight": 0.95
     },
     {
       "name": "네패스",
       "qty": 160,
-      "weight": 0.84
+      "weight": 0.93
     },
     {
-      "name": "ISC",
-      "qty": 21,
-      "weight": 0.77
+      "name": "코세스",
+      "qty": 151,
+      "weight": 0.93
+    },
+    {
+      "name": "한양디지텍",
+      "qty": 213,
+      "weight": 0.92
+    },
+    {
+      "name": "에이치브이엠",
+      "qty": 57,
+      "weight": 0.86
     },
     {
       "name": "에스앤에스텍",
       "qty": 74,
-      "weight": 0.76
+      "weight": 0.77
     },
     {
       "name": "서부T&D",
       "qty": 414,
-      "weight": 0.74
+      "weight": 0.76
+    },
+    {
+      "name": "ISC",
+      "qty": 21,
+      "weight": 0.71
     },
     {
       "name": "원익IPS",
       "qty": 25,
-      "weight": 0.73
-    },
-    {
-      "name": "인텔리안테크",
-      "qty": 43,
-      "weight": 0.72
-    },
-    {
-      "name": "알지노믹스",
-      "qty": 48,
       "weight": 0.71
     },
     {
@@ -251,29 +241,49 @@
       "weight": 0.69
     },
     {
+      "name": "인텔리안테크",
+      "qty": 43,
+      "weight": 0.69
+    },
+    {
+      "name": "태웅",
+      "qty": 123,
+      "weight": 0.68
+    },
+    {
+      "name": "에스엔시스",
+      "qty": 138,
+      "weight": 0.66
+    },
+    {
       "name": "지투지바이오",
       "qty": 85,
-      "weight": 0.62
+      "weight": 0.63
     },
     {
       "name": "솔브레인홀딩스",
       "qty": 79,
-      "weight": 0.61
-    },
-    {
-      "name": "이오테크닉스",
-      "qty": 6,
-      "weight": 0.59
+      "weight": 0.6
     },
     {
       "name": "에스티팜",
       "qty": 28,
-      "weight": 0.55
+      "weight": 0.56
+    },
+    {
+      "name": "이오테크닉스",
+      "qty": 6,
+      "weight": 0.52
     },
     {
       "name": "선익시스템",
       "qty": 42,
-      "weight": 0.53
+      "weight": 0.51
+    },
+    {
+      "name": "알지노믹스",
+      "qty": 35,
+      "weight": 0.5
     },
     {
       "name": "노바렉스",
@@ -286,49 +296,49 @@
       "weight": 0.49
     },
     {
-      "name": "에스엔시스",
-      "qty": 115,
-      "weight": 0.49
-    },
-    {
       "name": "성일하이텍",
       "qty": 56,
-      "weight": 0.47
+      "weight": 0.49
     },
     {
       "name": "에이프릴바이오",
       "qty": 69,
-      "weight": 0.46
-    },
-    {
-      "name": "태웅",
-      "qty": 85,
-      "weight": 0.44
+      "weight": 0.47
     },
     {
       "name": "씨메스로보틱스",
       "qty": 101,
-      "weight": 0.43
+      "weight": 0.42
     },
     {
       "name": "기가비스",
       "qty": 18,
-      "weight": 0.42
+      "weight": 0.41
     },
     {
       "name": "코오롱생명과학",
       "qty": 46,
-      "weight": 0.36
+      "weight": 0.38
     },
     {
       "name": "이랜텍",
       "qty": 254,
+      "weight": 0.37
+    },
+    {
+      "name": "덕산네오룩스",
+      "qty": 57,
       "weight": 0.36
     },
     {
       "name": "보로노이",
       "qty": 11,
-      "weight": 0.34
+      "weight": 0.35
+    },
+    {
+      "name": "삼현",
+      "qty": 35,
+      "weight": 0.32
     },
     {
       "name": "아모그린텍",
@@ -336,14 +346,9 @@
       "weight": 0.3
     },
     {
-      "name": "삼현",
-      "qty": 35,
-      "weight": 0.3
-    },
-    {
       "name": "레이크머티리얼즈",
       "qty": 104,
-      "weight": 0.27
+      "weight": 0.3
     },
     {
       "name": "씨어스",
@@ -351,18 +356,18 @@
       "weight": 0.27
     },
     {
-      "name": "덕산네오룩스",
-      "qty": 40,
-      "weight": 0.23
-    },
-    {
       "name": "LS머트리얼즈",
       "qty": 88,
-      "weight": 0.23
+      "weight": 0.25
     },
     {
-      "name": "미래에셋벤처투자",
-      "qty": 18,
+      "name": "아모텍",
+      "qty": 44,
+      "weight": 0.21
+    },
+    {
+      "name": "자람테크놀로지",
+      "qty": 21,
       "weight": 0.11
     },
     {
@@ -371,748 +376,1120 @@
       "weight": 0.11
     },
     {
-      "name": "자람테크놀로지",
-      "qty": 21,
-      "weight": 0.11
-    },
-    {
-      "name": "한라캐스트",
-      "qty": 50,
-      "weight": 0.11
-    },
-    {
       "name": "바디텍메드",
       "qty": 25,
       "weight": 0.04
     }
   ],
-  "TIME 코스닥액티브": [],
-  "PLUS 코스닥150액티브": [
+  "TIME 코스닥액티브": [
     {
-      "name": "더블유씨피",
-      "qty": 2663,
-      "weight": 6.6606
+      "name": "테스",
+      "qty": 236,
+      "weight": 8.01
+    },
+    {
+      "name": "HPSP",
+      "qty": 351,
+      "weight": 5.62
+    },
+    {
+      "name": "원익IPS",
+      "qty": 156,
+      "weight": 5.22
+    },
+    {
+      "name": "주성엔지니어링",
+      "qty": 101,
+      "weight": 4.36
+    },
+    {
+      "name": "인텍플러스",
+      "qty": 549,
+      "weight": 4.35
+    },
+    {
+      "name": "제주반도체",
+      "qty": 180,
+      "weight": 3.62
+    },
+    {
+      "name": "기가비스",
+      "qty": 100,
+      "weight": 2.69
+    },
+    {
+      "name": "심텍",
+      "qty": 99,
+      "weight": 2.55
+    },
+    {
+      "name": "하나마이크론",
+      "qty": 250,
+      "weight": 2.44
+    },
+    {
+      "name": "두산테스나",
+      "qty": 75,
+      "weight": 2.35
+    },
+    {
+      "name": "코미코",
+      "qty": 110,
+      "weight": 2.32
+    },
+    {
+      "name": "로보티즈",
+      "qty": 36,
+      "weight": 2.29
     },
     {
       "name": "서진시스템",
-      "qty": 453,
-      "weight": 6.4707
+      "qty": 149,
+      "weight": 2.23
+    },
+    {
+      "name": "미코",
+      "qty": 521,
+      "weight": 2.2
+    },
+    {
+      "name": "레인보우로보틱스",
+      "qty": 16,
+      "weight": 2.02
+    },
+    {
+      "name": "한선엔지니어링",
+      "qty": 468,
+      "weight": 1.94
+    },
+    {
+      "name": "티엘비",
+      "qty": 99,
+      "weight": 1.92
+    },
+    {
+      "name": "피에스케이",
+      "qty": 60,
+      "weight": 1.91
+    },
+    {
+      "name": "필옵틱스",
+      "qty": 220,
+      "weight": 1.89
+    },
+    {
+      "name": "에코프로",
+      "qty": 76,
+      "weight": 1.81
+    },
+    {
+      "name": "유진테크",
+      "qty": 50,
+      "weight": 1.8
+    },
+    {
+      "name": "피에스케이홀딩스",
+      "qty": 69,
+      "weight": 1.79
+    },
+    {
+      "name": "네패스",
+      "qty": 250,
+      "weight": 1.72
+    },
+    {
+      "name": "스피어",
+      "qty": 250,
+      "weight": 1.69
+    },
+    {
+      "name": "ISC",
+      "qty": 40,
+      "weight": 1.61
+    },
+    {
+      "name": "에코프로비엠",
+      "qty": 44,
+      "weight": 1.57
+    },
+    {
+      "name": "알테오젠",
+      "qty": 23,
+      "weight": 1.54
+    },
+    {
+      "name": "선익시스템",
+      "qty": 100,
+      "weight": 1.42
+    },
+    {
+      "name": "덕산하이메탈",
+      "qty": 499,
+      "weight": 1.4
+    },
+    {
+      "name": "비츠로셀",
+      "qty": 146,
+      "weight": 1.29
+    },
+    {
+      "name": "대주전자재료",
+      "qty": 50,
+      "weight": 1.17
+    },
+    {
+      "name": "오이솔루션",
+      "qty": 192,
+      "weight": 1.16
+    },
+    {
+      "name": "대한광통신",
+      "qty": 308,
+      "weight": 1.12
+    },
+    {
+      "name": "브이엠",
+      "qty": 61,
+      "weight": 1.1
+    },
+    {
+      "name": "리가켐바이오",
+      "qty": 42,
+      "weight": 1.07
+    },
+    {
+      "name": "파두",
+      "qty": 53,
+      "weight": 1.05
+    },
+    {
+      "name": "디앤디파마텍",
+      "qty": 62,
+      "weight": 0.98
+    },
+    {
+      "name": "에스피지",
+      "qty": 50,
+      "weight": 0.94
+    },
+    {
+      "name": "파크시스템스",
+      "qty": 19,
+      "weight": 0.94
+    },
+    {
+      "name": "LS머트리얼즈",
+      "qty": 250,
+      "weight": 0.83
+    },
+    {
+      "name": "리브스메드",
+      "qty": 100,
+      "weight": 0.77
+    },
+    {
+      "name": "HLB",
+      "qty": 88,
+      "weight": 0.77
+    },
+    {
+      "name": "미래에셋벤처투자",
+      "qty": 130,
+      "weight": 0.77
+    },
+    {
+      "name": "RFHIC",
+      "qty": 50,
+      "weight": 0.76
+    },
+    {
+      "name": "알지노믹스",
+      "qty": 40,
+      "weight": 0.68
+    },
+    {
+      "name": "태성",
+      "qty": 65,
+      "weight": 0.67
+    },
+    {
+      "name": "켐트로닉스",
+      "qty": 105,
+      "weight": 0.62
+    },
+    {
+      "name": "쎄트렉아이",
+      "qty": 30,
+      "weight": 0.62
+    },
+    {
+      "name": "에이치브이엠",
+      "qty": 32,
+      "weight": 0.57
+    },
+    {
+      "name": "인텔리안테크",
+      "qty": 30,
+      "weight": 0.57
+    },
+    {
+      "name": "리노공업",
+      "qty": 29,
+      "weight": 0.54
+    },
+    {
+      "name": "에이비엘바이오",
+      "qty": 25,
+      "weight": 0.46
+    },
+    {
+      "name": "올릭스",
+      "qty": 19,
+      "weight": 0.44
     },
     {
       "name": "씨어스",
-      "qty": 970,
-      "weight": 5.4426
+      "qty": 70,
+      "weight": 0.39
+    },
+    {
+      "name": "메쥬",
+      "qty": 101,
+      "weight": 0.37
+    },
+    {
+      "name": "더블유씨피",
+      "qty": 144,
+      "weight": 0.37
+    },
+    {
+      "name": "실리콘투",
+      "qty": 53,
+      "weight": 0.36
+    },
+    {
+      "name": "오킨스전자",
+      "qty": 99,
+      "weight": 0.36
+    },
+    {
+      "name": "케어젠",
+      "qty": 23,
+      "weight": 0.34
+    },
+    {
+      "name": "RF머트리얼즈",
+      "qty": 26,
+      "weight": 0.34
+    },
+    {
+      "name": "보로노이",
+      "qty": 7,
+      "weight": 0.27
+    }
+  ],
+  "PLUS 코스닥150액티브": [
+    {
+      "name": "서진시스템",
+      "qty": 453,
+      "weight": 6.8108
+    },
+    {
+      "name": "더블유씨피",
+      "qty": 2663,
+      "weight": 6.7787
+    },
+    {
+      "name": "씨어스",
+      "qty": 1025,
+      "weight": 5.6755
     },
     {
       "name": "스피어",
       "qty": 493,
-      "weight": 3.4413
-    },
-    {
-      "name": "코미코",
-      "qty": 142,
-      "weight": 3.3734
-    },
-    {
-      "name": "피에스케이홀딩스",
-      "qty": 116,
-      "weight": 3.3603
-    },
-    {
-      "name": "두산테스나",
-      "qty": 98,
-      "weight": 3.262
+      "weight": 3.3364
     },
     {
       "name": "비나텍",
       "qty": 148,
-      "weight": 2.9726
+      "weight": 3.241
     },
     {
-      "name": "에프앤가이드",
-      "qty": 621,
-      "weight": 2.9056
+      "name": "두산테스나",
+      "qty": 98,
+      "weight": 3.0806
+    },
+    {
+      "name": "피에스케이홀딩스",
+      "qty": 116,
+      "weight": 3.0242
+    },
+    {
+      "name": "코미코",
+      "qty": 142,
+      "weight": 3.0086
     },
     {
       "name": "한중엔시에스",
       "qty": 340,
-      "weight": 2.7484
+      "weight": 2.9056
     },
     {
-      "name": "파크시스템스",
-      "qty": 41,
-      "weight": 2.6475
+      "name": "에프앤가이드",
+      "qty": 567,
+      "weight": 2.7525
     },
     {
       "name": "씨에스베어링",
       "qty": 3054,
-      "weight": 2.5442
-    },
-    {
-      "name": "브이엠",
-      "qty": 137,
-      "weight": 2.5276
-    },
-    {
-      "name": "원익머트리얼즈",
-      "qty": 269,
-      "weight": 2.4354
+      "weight": 2.651
     },
     {
       "name": "새로닉스",
       "qty": 978,
-      "weight": 2.4182
+      "weight": 2.5647
+    },
+    {
+      "name": "원익머트리얼즈",
+      "qty": 269,
+      "weight": 2.498
+    },
+    {
+      "name": "브이엠",
+      "qty": 137,
+      "weight": 2.4733
     },
     {
       "name": "티씨케이",
       "qty": 41,
-      "weight": 2.2615
-    },
-    {
-      "name": "리노공업",
-      "qty": 112,
-      "weight": 2.2261
+      "weight": 2.2899
     },
     {
       "name": "테스",
       "qty": 64,
-      "weight": 2.2179
+      "weight": 2.1779
+    },
+    {
+      "name": "리노공업",
+      "qty": 112,
+      "weight": 2.0844
+    },
+    {
+      "name": "파크시스템스",
+      "qty": 41,
+      "weight": 2.0377
     },
     {
       "name": "심텍",
       "qty": 77,
-      "weight": 1.9054
+      "weight": 1.9852
     },
     {
       "name": "솔브레인",
       "qty": 22,
-      "weight": 1.8474
-    },
-    {
-      "name": "ISC",
-      "qty": 39,
-      "weight": 1.7061
+      "weight": 1.8061
     },
     {
       "name": "피에스케이",
       "qty": 52,
-      "weight": 1.6804
+      "weight": 1.6566
     },
     {
       "name": "코오롱티슈진",
       "qty": 80,
-      "weight": 1.5612
+      "weight": 1.6119
     },
     {
       "name": "대주전자재료",
       "qty": 67,
-      "weight": 1.5394
+      "weight": 1.578
+    },
+    {
+      "name": "ISC",
+      "qty": 39,
+      "weight": 1.5709
     },
     {
       "name": "동진쎄미켐",
       "qty": 134,
-      "weight": 1.5037
+      "weight": 1.569
     },
     {
       "name": "상신이디피",
       "qty": 422,
-      "weight": 1.4592
+      "weight": 1.557
     },
     {
       "name": "알지노믹스",
       "qty": 82,
-      "weight": 1.4396
-    },
-    {
-      "name": "기가비스",
-      "qty": 47,
-      "weight": 1.3052
+      "weight": 1.3984
     },
     {
       "name": "올릭스",
       "qty": 58,
-      "weight": 1.2709
+      "weight": 1.3471
+    },
+    {
+      "name": "기가비스",
+      "qty": 47,
+      "weight": 1.2669
     },
     {
       "name": "원익IPS",
       "qty": 36,
-      "weight": 1.2551
-    },
-    {
-      "name": "에이프릴바이오",
-      "qty": 140,
-      "weight": 1.1037
+      "weight": 1.2078
     },
     {
       "name": "한선엔지니어링",
       "qty": 285,
-      "weight": 1.069
+      "weight": 1.1836
+    },
+    {
+      "name": "에이프릴바이오",
+      "qty": 140,
+      "weight": 1.1413
     },
     {
       "name": "알테오젠",
-      "qty": 14,
-      "weight": 0.8974
+      "qty": 16,
+      "weight": 1.0736
     },
     {
-      "name": "씨엠티엑스",
-      "qty": 39,
-      "weight": 0.8798
+      "name": "인텍플러스",
+      "qty": 126,
+      "weight": 1.0005
     },
     {
       "name": "금양그린파워",
       "qty": 574,
-      "weight": 0.8712
-    },
-    {
-      "name": "클래시스",
-      "qty": 98,
-      "weight": 0.8192
-    },
-    {
-      "name": "지투지바이오",
-      "qty": 94,
-      "weight": 0.8108
-    },
-    {
-      "name": "인텍플러스",
-      "qty": 98,
-      "weight": 0.7903
-    },
-    {
-      "name": "솔브레인홀딩스",
-      "qty": 83,
-      "weight": 0.7641
+      "weight": 0.9171
     },
     {
       "name": "HPSP",
       "qty": 54,
-      "weight": 0.7344
+      "weight": 0.8669
     },
     {
-      "name": "원화예금",
-      "qty": 3647818,
-      "weight": 0.6938
+      "name": "씨엠티엑스",
+      "qty": 39,
+      "weight": 0.8443
+    },
+    {
+      "name": "클래시스",
+      "qty": 98,
+      "weight": 0.8253
+    },
+    {
+      "name": "솔브레인홀딩스",
+      "qty": 83,
+      "weight": 0.746
     },
     {
       "name": "앱클론",
       "qty": 121,
-      "weight": 0.6858
+      "weight": 0.7386
+    },
+    {
+      "name": "파두",
+      "qty": 36,
+      "weight": 0.7129
+    },
+    {
+      "name": "지투지바이오",
+      "qty": 80,
+      "weight": 0.6975
     },
     {
       "name": "코세스",
       "qty": 95,
-      "weight": 0.6848
+      "weight": 0.6913
     },
     {
       "name": "실리콘투",
       "qty": 100,
-      "weight": 0.659
+      "weight": 0.6883
     },
     {
       "name": "LS증권",
       "qty": 520,
-      "weight": 0.6567
+      "weight": 0.6638
     },
     {
       "name": "덕산하이메탈",
       "qty": 227,
-      "weight": 0.6252
+      "weight": 0.6407
     },
     {
-      "name": "파두",
-      "qty": 32,
-      "weight": 0.6147
-    },
-    {
-      "name": "엘티씨",
-      "qty": 48,
-      "weight": 0.5167
+      "name": "원화예금",
+      "qty": 3148854,
+      "weight": 0.6054
     },
     {
       "name": "리가켐바이오",
       "qty": 21,
-      "weight": 0.5161
+      "weight": 0.5362
     },
     {
-      "name": "알멕",
-      "qty": 42,
-      "weight": 0.4585
+      "name": "엘티씨",
+      "qty": 48,
+      "weight": 0.4937
     },
     {
       "name": "에이프로",
       "qty": 399,
-      "weight": 0.4485
+      "weight": 0.4756
     },
     {
-      "name": "디앤디파마텍",
-      "qty": 26,
-      "weight": 0.4327
+      "name": "알멕",
+      "qty": 42,
+      "weight": 0.4336
     },
     {
       "name": "RF머트리얼즈",
       "qty": 33,
-      "weight": 0.418
-    },
-    {
-      "name": "에이비엘바이오",
-      "qty": 24,
-      "weight": 0.4159
+      "weight": 0.4276
     },
     {
       "name": "액트로",
       "qty": 183,
-      "weight": 0.4104
+      "weight": 0.4081
     },
     {
       "name": "다우데이타",
       "qty": 107,
-      "weight": 0.3989
+      "weight": 0.4077
     },
     {
       "name": "상아프론테크",
       "qty": 107,
-      "weight": 0.3771
-    },
-    {
-      "name": "이오테크닉스",
-      "qty": 3,
-      "weight": 0.3492
+      "weight": 0.4026
     },
     {
       "name": "더핑크퐁컴퍼니",
       "qty": 150,
-      "weight": 0.3475
-    },
-    {
-      "name": "오로스테크놀로지",
-      "qty": 58,
-      "weight": 0.3414
+      "weight": 0.3383
     },
     {
       "name": "씨젠",
       "qty": 61,
-      "weight": 0.3254
+      "weight": 0.3366
+    },
+    {
+      "name": "오로스테크놀로지",
+      "qty": 58,
+      "weight": 0.329
     },
     {
       "name": "덕산네오룩스",
       "qty": 42,
-      "weight": 0.2928
+      "weight": 0.3137
+    },
+    {
+      "name": "삼현",
+      "qty": 29,
+      "weight": 0.3094
+    },
+    {
+      "name": "이오테크닉스",
+      "qty": 3,
+      "weight": 0.3063
+    },
+    {
+      "name": "에이비엘바이오",
+      "qty": 16,
+      "weight": 0.295
+    },
+    {
+      "name": "디앤디파마텍",
+      "qty": 18,
+      "weight": 0.2855
     },
     {
       "name": "선익시스템",
       "qty": 19,
-      "weight": 0.2844
-    },
-    {
-      "name": "디아이티",
-      "qty": 50,
-      "weight": 0.2406
+      "weight": 0.2714
     },
     {
       "name": "레이크머티리얼즈",
       "qty": 73,
-      "weight": 0.229
+      "weight": 0.2487
     },
     {
-      "name": "삼현",
-      "qty": 20,
-      "weight": 0.2043
-    },
-    {
-      "name": "샘씨엔에스",
-      "qty": 64,
-      "weight": 0.1987
+      "name": "디아이티",
+      "qty": 50,
+      "weight": 0.2432
     },
     {
       "name": "하나머티리얼즈",
       "qty": 14,
-      "weight": 0.1947
+      "weight": 0.2003
+    },
+    {
+      "name": "샘씨엔에스",
+      "qty": 64,
+      "weight": 0.1856
     },
     {
       "name": "하이록코리아",
       "qty": 27,
-      "weight": 0.1761
+      "weight": 0.1848
     },
     {
       "name": "서부T&D",
       "qty": 73,
-      "weight": 0.1548
-    },
-    {
-      "name": "성호전자",
-      "qty": 11,
-      "weight": 0.0976
-    },
-    {
-      "name": "큐렉소",
-      "qty": 46,
-      "weight": 0.0962
-    },
-    {
-      "name": "에스티팜",
-      "qty": 4,
-      "weight": 0.0928
+      "weight": 0.1579
     },
     {
       "name": "나노신소재",
       "qty": 8,
-      "weight": 0.0878
+      "weight": 0.0969
+    },
+    {
+      "name": "에스티팜",
+      "qty": 4,
+      "weight": 0.0952
+    },
+    {
+      "name": "성호전자",
+      "qty": 11,
+      "weight": 0.0905
     },
     {
       "name": "오이솔루션",
       "qty": 14,
-      "weight": 0.0868
+      "weight": 0.0849
     },
     {
       "name": "채비",
       "qty": 34,
-      "weight": 0.0573
+      "weight": 0.059
     }
   ],
   "TIGER 코스닥액티브": [],
   "UNICORN SK하이닉스밸류체인액티브": [
     {
-      "name": "May 11, 2026",
-      "qty": 78,
-      "weight": 7462.69
+      "name": "SK스퀘어",
+      "qty": 487,
+      "weight": 22.39
     },
     {
-      "name": "Jul 5, 2022",
-      "qty": 119,
-      "weight": 29853.03
+      "name": "SK하이닉스",
+      "qty": 277,
+      "weight": 20.62
     },
     {
-      "name": "Nov 6, 2024",
-      "qty": 2120,
-      "weight": 61460.08
+      "name": "피에스케이",
+      "qty": 832,
+      "weight": 4.48
     },
     {
-      "name": "Nov 20, 2023",
-      "qty": 47,
-      "weight": 18898.18
+      "name": "브이엠",
+      "qty": 1419,
+      "weight": 4.33
     },
     {
-      "name": "Feb 26, 2024",
-      "qty": 32,
-      "weight": 7253.03
+      "name": "피에스케이홀딩스",
+      "qty": 879,
+      "weight": 3.87
     },
     {
-      "name": "90.52",
-      "qty": 205,
-      "weight": 438.26
+      "name": "LG이노텍",
+      "qty": 98,
+      "weight": 3.85
     },
     {
-      "name": "74.69",
-      "qty": 159,
-      "weight": 354.19
+      "name": "삼성전기",
+      "qty": 59,
+      "weight": 3.83
     },
     {
-      "name": "15.83",
-      "qty": 45,
-      "weight": 84.07
+      "name": "티씨케이",
+      "qty": 379,
+      "weight": 3.58
     },
     {
-      "name": "상승 987.39",
-      "qty": 10105,
-      "weight": 61460.08
+      "name": "샘씨엔에스",
+      "qty": 7076,
+      "weight": 3.47
     },
     {
-      "name": "상승 4,337.99",
-      "qty": 10106,
-      "weight": 60472.69
+      "name": "유진테크",
+      "qty": 563,
+      "weight": 3.44
     },
     {
-      "name": "상승 2,535.24",
-      "qty": 10109,
-      "weight": 56134.7
+      "name": "심텍",
+      "qty": 708,
+      "weight": 3.08
     },
     {
-      "name": "하락 1,694.75",
-      "qty": 10110,
-      "weight": 53599.46
+      "name": "이오테크닉스",
+      "qty": 170,
+      "weight": 2.93
     },
     {
-      "name": "상승 7,168.68",
-      "qty": 10111,
-      "weight": 55294.21
+      "name": "두산",
+      "qty": 51,
+      "weight": 2.83
     },
     {
-      "name": "하락 5,353.76",
-      "qty": 10111,
-      "weight": 48125.53
+      "name": "테크윙",
+      "qty": 1168,
+      "weight": 2.58
     },
     {
-      "name": "하락 2,742.85",
-      "qty": 10112,
-      "weight": 53479.29
+      "name": "테스",
+      "qty": 394,
+      "weight": 2.26
     },
     {
-      "name": "상승 2,787.21",
-      "qty": 10115,
-      "weight": 56222.14
+      "name": "HPSP",
+      "qty": 803,
+      "weight": 2.18
     },
     {
-      "name": "하락 548.64",
-      "qty": 10116,
-      "weight": 53434.93
+      "name": "디아이",
+      "qty": 2184,
+      "weight": 2.08
+    },
+    {
+      "name": "엑시콘",
+      "qty": 2159,
+      "weight": 2.01
+    },
+    {
+      "name": "와이씨",
+      "qty": 3729,
+      "weight": 1.96
+    },
+    {
+      "name": "GST",
+      "qty": 512,
+      "weight": 1.07
     }
   ],
   "WON 반도체밸류체인액티브": [
     {
-      "name": "96.94",
-      "qty": 201,
-      "weight": 0.0
+      "name": "SK하이닉스",
+      "qty": 292,
+      "weight": 23.85
     },
     {
-      "name": "94.38",
-      "qty": 201,
-      "weight": 0.0
+      "name": "삼성전자",
+      "qty": 1923,
+      "weight": 23.13
     },
     {
-      "name": "55,740.00",
-      "qty": 5,
-      "weight": 0.0
+      "name": "삼성전기",
+      "qty": 67,
+      "weight": 4.78
     },
     {
-      "name": "55,740.00",
-      "qty": 5,
-      "weight": 0.0
+      "name": "대덕전자",
+      "qty": 766,
+      "weight": 4.59
     },
     {
-      "name": "55,740.00",
-      "qty": 5,
-      "weight": 5.76
+      "name": "SK스퀘어",
+      "qty": 90,
+      "weight": 4.54
     },
     {
-      "name": "52,645.00",
-      "qty": 4,
-      "weight": 4.2
+      "name": "기가비스",
+      "qty": 853,
+      "weight": 4.27
     },
     {
-      "name": "52,280.00",
-      "qty": 13,
-      "weight": 12.78
+      "name": "피에스케이홀딩스",
+      "qty": 839,
+      "weight": 4.06
     },
     {
-      "name": "53,900.00",
-      "qty": 2,
-      "weight": 3.03
+      "name": "피에스케이",
+      "qty": 642,
+      "weight": 3.8
     },
     {
-      "name": "53,150.00",
-      "qty": 2,
-      "weight": 1.34
+      "name": "이오테크닉스",
+      "qty": 198,
+      "weight": 3.75
     },
     {
-      "name": "52,090.00",
-      "qty": 2,
-      "weight": 0.0
-    },
-    {
-      "name": "52,090.00",
-      "qty": 2,
-      "weight": 0.0
-    },
-    {
-      "name": "52,090.00",
-      "qty": 2,
-      "weight": 3.16
-    },
-    {
-      "name": "50,530.00",
-      "qty": 4,
-      "weight": 4.11
-    },
-    {
-      "name": "48,560.00",
-      "qty": 2,
-      "weight": 0.0
-    },
-    {
-      "name": "48,560.00",
-      "qty": 2,
-      "weight": 0.0
-    },
-    {
-      "name": "48,560.00",
-      "qty": 2,
-      "weight": 0.0
-    },
-    {
-      "name": "48,560.00",
-      "qty": 2,
-      "weight": 1.92
-    },
-    {
-      "name": "47,460.00",
-      "qty": 8,
-      "weight": 9.15
-    },
-    {
-      "name": "43,650.00",
-      "qty": 1,
-      "weight": 1.04
-    },
-    {
-      "name": "44,750.00",
-      "qty": 1,
-      "weight": 2.05
+      "name": "브이엠",
+      "qty": 1111,
+      "weight": 3.72
     }
   ],
   "RISE 비메모리반도체액티브": [
     {
-      "name": "38,700\n※ 전 영업일 종가 기준",
-      "qty": 38620,
-      "weight": 633687.0
-    },
-    {
-      "name": "2025-08-04",
-      "qty": 50,
-      "weight": 50.0
-    },
-    {
-      "name": "2024-05-03",
-      "qty": 40,
-      "weight": 40.0
-    },
-    {
-      "name": "2023-05-03",
-      "qty": 90,
-      "weight": 90.0
-    },
-    {
-      "name": "2022-05-03",
-      "qty": 87,
-      "weight": 75.0
-    },
-    {
-      "name": "85.27",
-      "qty": 143,
-      "weight": 272.83
-    },
-    {
-      "name": "52.58",
-      "qty": 136,
-      "weight": 249.94
-    },
-    {
-      "name": "32.69",
-      "qty": 6,
-      "weight": 22.88
-    },
-    {
-      "name": "KR7005930003",
+      "name": "삼성전자",
       "qty": 583,
-      "weight": 24.34
+      "weight": 24.73
     },
     {
-      "name": "KR7000660001",
+      "name": "SK하이닉스",
       "qty": 62,
-      "weight": 17.26
+      "weight": 17.86
     },
     {
-      "name": "KR7222800005",
+      "name": "심텍",
       "qty": 381,
-      "weight": 6.42
+      "weight": 6.43
     },
     {
-      "name": "KR7353200009",
+      "name": "대덕전자",
       "qty": 270,
-      "weight": 5.77
+      "weight": 5.7
     },
     {
-      "name": "KR7058470006",
-      "qty": 416,
-      "weight": 5.63
-    },
-    {
-      "name": "KR7403870009",
+      "name": "HPSP",
       "qty": 541,
-      "weight": 5.01
+      "weight": 5.69
     },
     {
-      "name": "KR7131970006",
-      "qty": 217,
-      "weight": 4.92
+      "name": "리노공업",
+      "qty": 416,
+      "weight": 5.07
     },
     {
-      "name": "KR7183300003",
-      "qty": 290,
-      "weight": 4.69
-    },
-    {
-      "name": "KR7074600008",
-      "qty": 855,
-      "weight": 4.67
-    },
-    {
-      "name": "KR7089970008",
-      "qty": 348,
-      "weight": 4.37
-    },
-    {
-      "name": "KR7009150004",
+      "name": "삼성전기",
       "qty": 19,
-      "weight": 4.22
+      "weight": 4.78
     },
     {
-      "name": "KR7036930006",
-      "qty": 140,
-      "weight": 4.19
-    },
-    {
-      "name": "KR7330860008",
+      "name": "네패스아크",
       "qty": 637,
-      "weight": 4.16
+      "weight": 4.63
     },
     {
-      "name": "KR7007660004",
+      "name": "두산테스나",
+      "qty": 217,
+      "weight": 4.47
+    },
+    {
+      "name": "원익QnC",
+      "qty": 855,
+      "weight": 4.42
+    },
+    {
+      "name": "브이엠",
+      "qty": 348,
+      "weight": 4.11
+    },
+    {
+      "name": "코미코",
+      "qty": 290,
+      "weight": 4.02
+    },
+    {
+      "name": "주성엔지니어링",
+      "qty": 140,
+      "weight": 3.97
+    },
+    {
+      "name": "이수페타시스",
       "qty": 261,
-      "weight": 4.14
+      "weight": 3.91
     },
     {
-      "name": "KRD010010001",
-      "qty": 1749753,
-      "weight": 0.23
-    },
-    {
-      "name": "1",
-      "qty": 2,
-      "weight": 3.0
-    },
-    {
-      "name": "8",
-      "qty": 9,
-      "weight": 10.0
-    },
-    {
-      "name": "15",
-      "qty": 16,
-      "weight": 17.0
-    },
-    {
-      "name": "22",
-      "qty": 23,
-      "weight": 24.0
-    },
-    {
-      "name": "29",
-      "qty": 30,
-      "weight": 0.0
+      "name": "원화예금",
+      "qty": 1776434,
+      "weight": 0.22
     }
   ],
   "TIGER 코리아테크액티브": [],
-  "TIME K바이오액티브": [],
+  "TIME K바이오액티브": [
+    {
+      "name": "알테오젠",
+      "qty": 220,
+      "weight": 10.92
+    },
+    {
+      "name": "셀트리온",
+      "qty": 420,
+      "weight": 10.45
+    },
+    {
+      "name": "삼성바이오로직스",
+      "qty": 40,
+      "weight": 7.58
+    },
+    {
+      "name": "한미약품",
+      "qty": 120,
+      "weight": 7.18
+    },
+    {
+      "name": "올릭스",
+      "qty": 348,
+      "weight": 5.98
+    },
+    {
+      "name": "리가켐바이오",
+      "qty": 300,
+      "weight": 5.67
+    },
+    {
+      "name": "에스티팜",
+      "qty": 250,
+      "weight": 4.4
+    },
+    {
+      "name": "디앤디파마텍",
+      "qty": 300,
+      "weight": 3.52
+    },
+    {
+      "name": "에이비엘바이오",
+      "qty": 250,
+      "weight": 3.41
+    },
+    {
+      "name": "에이프릴바이오",
+      "qty": 476,
+      "weight": 2.87
+    },
+    {
+      "name": "삼성에피스홀딩스",
+      "qty": 40,
+      "weight": 2.57
+    },
+    {
+      "name": "셀트리온제약",
+      "qty": 400,
+      "weight": 2.51
+    },
+    {
+      "name": "유한양행",
+      "qty": 200,
+      "weight": 2.24
+    },
+    {
+      "name": "알지노믹스",
+      "qty": 170,
+      "weight": 2.15
+    },
+    {
+      "name": "HLB",
+      "qty": 300,
+      "weight": 1.94
+    },
+    {
+      "name": "지투지바이오",
+      "qty": 300,
+      "weight": 1.94
+    },
+    {
+      "name": "인벤티지랩",
+      "qty": 276,
+      "weight": 1.81
+    },
+    {
+      "name": "오름테라퓨틱",
+      "qty": 200,
+      "weight": 1.8
+    },
+    {
+      "name": "휴젤",
+      "qty": 50,
+      "weight": 1.76
+    },
+    {
+      "name": "보로노이",
+      "qty": 60,
+      "weight": 1.69
+    },
+    {
+      "name": "오스코텍",
+      "qty": 301,
+      "weight": 1.68
+    },
+    {
+      "name": "펩트론",
+      "qty": 50,
+      "weight": 1.65
+    },
+    {
+      "name": "씨어스",
+      "qty": 401,
+      "weight": 1.64
+    },
+    {
+      "name": "한올바이오파마",
+      "qty": 200,
+      "weight": 1.46
+    },
+    {
+      "name": "파마리서치",
+      "qty": 30,
+      "weight": 1.3
+    },
+    {
+      "name": "리브스메드",
+      "qty": 201,
+      "weight": 1.15
+    },
+    {
+      "name": "일동제약",
+      "qty": 400,
+      "weight": 1.11
+    },
+    {
+      "name": "케어젠",
+      "qty": 102,
+      "weight": 1.1
+    },
+    {
+      "name": "고영",
+      "qty": 194,
+      "weight": 1.03
+    },
+    {
+      "name": "네이처셀",
+      "qty": 200,
+      "weight": 0.87
+    },
+    {
+      "name": "에임드바이오",
+      "qty": 203,
+      "weight": 0.8
+    },
+    {
+      "name": "앱클론",
+      "qty": 150,
+      "weight": 0.68
+    },
+    {
+      "name": "HK이노엔",
+      "qty": 102,
+      "weight": 0.61
+    },
+    {
+      "name": "토모큐브",
+      "qty": 101,
+      "weight": 0.55
+    },
+    {
+      "name": "메쥬",
+      "qty": 201,
+      "weight": 0.54
+    },
+    {
+      "name": "지아이이노베이션",
+      "qty": 199,
+      "weight": 0.34
+    }
+  ],
   "KoAct 바이오헬스케어액티브": [
     {
       "name": "원화예금",
-      "qty": 6616128,
+      "qty": 10153306,
       "weight": 0.0
     },
     {
       "name": "알테오젠",
-      "qty": 226,
-      "weight": 9.64
+      "qty": 193,
+      "weight": 8.42
     },
     {
       "name": "셀트리온",
@@ -1120,129 +1497,129 @@
       "weight": 8.06
     },
     {
-      "name": "에스티팜",
-      "qty": 514,
-      "weight": 7.94
-    },
-    {
       "name": "리가켐바이오",
       "qty": 483,
-      "weight": 7.9
+      "weight": 8.02
+    },
+    {
+      "name": "에스티팜",
+      "qty": 514,
+      "weight": 7.96
     },
     {
       "name": "에이비엘바이오",
       "qty": 657,
-      "weight": 7.58
+      "weight": 7.88
     },
     {
       "name": "올릭스",
       "qty": 514,
-      "weight": 7.5
+      "weight": 7.77
     },
     {
       "name": "디앤디파마텍",
       "qty": 478,
-      "weight": 5.29
-    },
-    {
-      "name": "알지노믹스",
-      "qty": 424,
-      "weight": 4.95
+      "weight": 4.93
     },
     {
       "name": "에이프릴바이오",
       "qty": 904,
-      "weight": 4.74
+      "weight": 4.79
     },
     {
       "name": "한미약품",
       "qty": 90,
-      "weight": 4.68
+      "weight": 4.73
+    },
+    {
+      "name": "알지노믹스",
+      "qty": 424,
+      "weight": 4.7
     },
     {
       "name": "한올바이오파마",
       "qty": 619,
-      "weight": 4.04
+      "weight": 3.97
     },
     {
       "name": "보로노이",
       "qty": 147,
-      "weight": 3.6
+      "weight": 3.63
     },
     {
       "name": "오스코텍",
       "qty": 701,
-      "weight": 3.47
+      "weight": 3.44
+    },
+    {
+      "name": "파마리서치",
+      "qty": 90,
+      "weight": 3.42
     },
     {
       "name": "녹십자",
       "qty": 195,
-      "weight": 3.12
-    },
-    {
-      "name": "파마리서치",
-      "qty": 77,
-      "weight": 2.82
+      "weight": 3.17
     },
     {
       "name": "휴젤",
-      "qty": 82,
-      "weight": 2.54
-    },
-    {
-      "name": "넥스트바이오메디컬",
-      "qty": 369,
-      "weight": 2.0
+      "qty": 98,
+      "weight": 3.04
     },
     {
       "name": "앱클론",
       "qty": 494,
-      "weight": 1.86
+      "weight": 1.96
+    },
+    {
+      "name": "넥스트바이오메디컬",
+      "qty": 369,
+      "weight": 1.89
     },
     {
       "name": "HLB이노베이션",
-      "qty": 798,
-      "weight": 1.46
+      "qty": 853,
+      "weight": 1.56
     },
     {
       "name": "씨어스",
       "qty": 366,
-      "weight": 1.37
+      "weight": 1.32
     },
     {
       "name": "나이벡",
       "qty": 527,
-      "weight": 1.28
+      "weight": 1.25
     },
     {
       "name": "인벤티지랩",
       "qty": 187,
-      "weight": 1.06
+      "weight": 1.08
     },
     {
       "name": "뉴로핏",
       "qty": 570,
-      "weight": 0.9
+      "weight": 0.86
     },
     {
       "name": "큐라클",
-      "qty": 426,
-      "weight": 0.65
+      "qty": 492,
+      "weight": 0.83
     },
     {
       "name": "한스바이오메드",
       "qty": 154,
-      "weight": 0.5
-    },
-    {
-      "name": "로킷헬스케어",
-      "qty": 62,
-      "weight": 0.41
+      "weight": 0.47
     },
     {
       "name": "지투지바이오",
       "qty": 55,
-      "weight": 0.32
+      "weight": 0.31
+    },
+    {
+      "name": "로킷헬스케어",
+      "qty": 31,
+      "weight": 0.2
     },
     {
       "name": "일동제약",
@@ -1252,168 +1629,364 @@
     {
       "name": "삼성바이오로직스",
       "qty": 1,
-      "weight": 0.16
+      "weight": 0.17
     }
   ],
   "TIGER 기술이전바이오액티브": [],
-  "TIME 글로벌AI인공지능액티브": [],
+  "TIME 글로벌AI인공지능액티브": [
+    {
+      "name": "Kioxia Holdings Corp",
+      "qty": 143,
+      "weight": 8.06
+    },
+    {
+      "name": "Intel Corp",
+      "qty": 541,
+      "weight": 7.49
+    },
+    {
+      "name": "Advanced Micro Devices Inc",
+      "qty": 119,
+      "weight": 6.77
+    },
+    {
+      "name": "Seagate Technology Holdings PLC",
+      "qty": 58,
+      "weight": 6.0
+    },
+    {
+      "name": "Western Digital Corp",
+      "qty": 76,
+      "weight": 4.76
+    },
+    {
+      "name": "ARM Holdings PLC",
+      "qty": 95,
+      "weight": 4.02
+    },
+    {
+      "name": "NASDAQ 100 E-MINI INDEX JUN 2026",
+      "qty": 0,
+      "weight": 3.96
+    },
+    {
+      "name": "Snowflake Inc",
+      "qty": 147,
+      "weight": 3.8
+    },
+    {
+      "name": "Sandisk Corp",
+      "qty": 17,
+      "weight": 3.74
+    },
+    {
+      "name": "NVIDIA Corp",
+      "qty": 150,
+      "weight": 3.42
+    },
+    {
+      "name": "QUALCOMM Inc",
+      "qty": 134,
+      "weight": 3.15
+    },
+    {
+      "name": "ASML Holding NV",
+      "qty": 14,
+      "weight": 2.9
+    },
+    {
+      "name": "NetApp Inc",
+      "qty": 160,
+      "weight": 2.87
+    },
+    {
+      "name": "International Business Machines Corp",
+      "qty": 87,
+      "weight": 2.63
+    },
+    {
+      "name": "Amazon.com Inc",
+      "qty": 91,
+      "weight": 2.41
+    },
+    {
+      "name": "Space Exploration Technologies Corp",
+      "qty": 121,
+      "weight": 2.17
+    },
+    {
+      "name": "ServiceNow Inc",
+      "qty": 176,
+      "weight": 2.0
+    },
+    {
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "qty": 42,
+      "weight": 1.98
+    },
+    {
+      "name": "TIME 차이나AI테크액티브",
+      "qty": 1093,
+      "weight": 1.94
+    },
+    {
+      "name": "Alibaba Group Holding Ltd",
+      "qty": 1179,
+      "weight": 1.84
+    },
+    {
+      "name": "Roper Technologies Inc",
+      "qty": 49,
+      "weight": 1.83
+    },
+    {
+      "name": "Alphabet Inc",
+      "qty": 45,
+      "weight": 1.79
+    },
+    {
+      "name": "Salesforce Inc",
+      "qty": 96,
+      "weight": 1.77
+    },
+    {
+      "name": "MercadoLibre Inc",
+      "qty": 10,
+      "weight": 1.77
+    },
+    {
+      "name": "Accenture PLC",
+      "qty": 92,
+      "weight": 1.74
+    },
+    {
+      "name": "Knowledge Atlas Technology JSC Ltd",
+      "qty": 107,
+      "weight": 1.67
+    },
+    {
+      "name": "Meta Platforms Inc",
+      "qty": 26,
+      "weight": 1.64
+    },
+    {
+      "name": "Strategy Inc",
+      "qty": 113,
+      "weight": 1.56
+    },
+    {
+      "name": "PDD Holdings Inc",
+      "qty": 169,
+      "weight": 1.53
+    },
+    {
+      "name": "Dell Technologies Inc",
+      "qty": 33,
+      "weight": 1.45
+    },
+    {
+      "name": "Murata Manufacturing Co Ltd",
+      "qty": 220,
+      "weight": 1.31
+    },
+    {
+      "name": "eBay Inc",
+      "qty": 108,
+      "weight": 1.3
+    },
+    {
+      "name": "SAP SE",
+      "qty": 66,
+      "weight": 1.21
+    },
+    {
+      "name": "Coinbase Global Inc",
+      "qty": 55,
+      "weight": 0.98
+    },
+    {
+      "name": "Circle Internet Group Inc",
+      "qty": 105,
+      "weight": 0.91
+    },
+    {
+      "name": "Tencent Holdings Ltd",
+      "qty": 115,
+      "weight": 0.76
+    }
+  ],
   "KoAct 글로벌AI&로봇액티브": [
     {
       "name": "설정현금액",
-      "qty": 1813761726,
+      "qty": 1843995260,
       "weight": 0.0
     },
     {
       "name": "원화현금",
-      "qty": 77825888,
+      "qty": 20407508,
       "weight": 0.0
-    },
-    {
-      "name": "Lumentum Holdings Inc",
-      "qty": 52,
-      "weight": 4.05
     },
     {
       "name": "삼성전자",
       "qty": 193,
-      "weight": 3.59
-    },
-    {
-      "name": "Kioxia Holdings Corp",
-      "qty": 64,
-      "weight": 2.64
+      "weight": 3.57
     },
     {
       "name": "SK하이닉스",
       "qty": 17,
-      "weight": 2.11
+      "weight": 2.13
     },
     {
       "name": "가온칩스",
       "qty": 509,
-      "weight": 1.69
+      "weight": 1.65
+    },
+    {
+      "name": "TERADYNE INC",
+      "qty": 41,
+      "weight": 1.37
+    },
+    {
+      "name": "LAM RESEARCH",
+      "qty": 43,
+      "weight": 1.31
+    },
+    {
+      "name": "ASML HOLDING",
+      "qty": 8,
+      "weight": 1.24
     },
     {
       "name": "파두",
       "qty": 218,
-      "weight": 1.27
+      "weight": 1.23
     },
     {
       "name": "티엘비",
       "qty": 115,
-      "weight": 0.66
+      "weight": 0.64
     },
     {
       "name": "LG이노텍",
       "qty": 9,
-      "weight": 0.54
+      "weight": 0.6
     },
     {
       "name": "로보티즈",
       "qty": 23,
-      "weight": 0.44
+      "weight": 0.42
     }
   ],
   "KoAct AI인프라액티브": [
     {
+      "name": "원화예금",
+      "qty": 7777666,
+      "weight": 0.0
+    },
+    {
       "name": "SK하이닉스",
       "qty": 123,
-      "weight": 14.08
+      "weight": 14.55
     },
     {
       "name": "HD현대일렉트릭",
       "qty": 103,
-      "weight": 6.2
-    },
-    {
-      "name": "원익IPS",
-      "qty": 451,
-      "weight": 4.4
-    },
-    {
-      "name": "코리아써키트",
-      "qty": 594,
-      "weight": 4.25
-    },
-    {
-      "name": "NAVER",
-      "qty": 297,
-      "weight": 3.9
-    },
-    {
-      "name": "피에스케이",
-      "qty": 424,
-      "weight": 3.83
+      "weight": 6.36
     },
     {
       "name": "삼성전기",
       "qty": 41,
-      "weight": 3.74
+      "weight": 4.24
+    },
+    {
+      "name": "코리아써키트",
+      "qty": 594,
+      "weight": 4.2
+    },
+    {
+      "name": "원익IPS",
+      "qty": 451,
+      "weight": 4.07
+    },
+    {
+      "name": "NAVER",
+      "qty": 297,
+      "weight": 3.81
     },
     {
       "name": "삼성SDI",
       "qty": 130,
-      "weight": 3.73
+      "weight": 3.72
+    },
+    {
+      "name": "피에스케이",
+      "qty": 424,
+      "weight": 3.63
     },
     {
       "name": "테스",
       "qty": 380,
-      "weight": 3.69
-    },
-    {
-      "name": "티엘비",
-      "qty": 623,
-      "weight": 3.32
-    },
-    {
-      "name": "주성엔지니어링",
-      "qty": 263,
-      "weight": 3.23
-    },
-    {
-      "name": "하나마이크론",
-      "qty": 1200,
-      "weight": 3.13
-    },
-    {
-      "name": "두산퓨얼셀",
-      "qty": 780,
-      "weight": 3.03
-    },
-    {
-      "name": "삼성전자",
-      "qty": 175,
-      "weight": 3.0
+      "weight": 3.48
     },
     {
       "name": "HPSP",
       "qty": 789,
-      "weight": 3.0
+      "weight": 3.41
     },
     {
-      "name": "네패스",
-      "qty": 1650,
-      "weight": 2.87
+      "name": "티엘비",
+      "qty": 623,
+      "weight": 3.27
+    },
+    {
+      "name": "하나마이크론",
+      "qty": 1200,
+      "weight": 3.16
+    },
+    {
+      "name": "두산퓨얼셀",
+      "qty": 780,
+      "weight": 3.13
     },
     {
       "name": "LS ELECTRIC",
       "qty": 231,
-      "weight": 2.74
+      "weight": 3.08
     },
     {
-      "name": "해성디에스",
-      "qty": 611,
-      "weight": 2.55
+      "name": "네패스",
+      "qty": 1650,
+      "weight": 3.06
+    },
+    {
+      "name": "주성엔지니어링",
+      "qty": 263,
+      "weight": 3.06
+    },
+    {
+      "name": "삼성전자",
+      "qty": 175,
+      "weight": 3.05
     },
     {
       "name": "심텍",
       "qty": 363,
-      "weight": 2.51
+      "weight": 2.52
+    },
+    {
+      "name": "해성디에스",
+      "qty": 564,
+      "weight": 2.49
     },
     {
       "name": "고영",
       "qty": 1144,
-      "weight": 2.38
+      "weight": 2.21
+    },
+    {
+      "name": "대한전선",
+      "qty": 1055,
+      "weight": 2.18
     },
     {
       "name": "가온칩스",
@@ -1421,70 +1994,65 @@
       "weight": 2.17
     },
     {
-      "name": "한양디지텍",
-      "qty": 1426,
-      "weight": 2.15
-    },
-    {
-      "name": "대한전선",
-      "qty": 1055,
-      "weight": 2.13
-    },
-    {
-      "name": "현대건설",
-      "qty": 248,
-      "weight": 2.08
-    },
-    {
       "name": "산일전기",
       "qty": 165,
-      "weight": 2.03
+      "weight": 2.14
     },
     {
-      "name": "이오테크닉스",
-      "qty": 62,
-      "weight": 2.02
+      "name": "한양디지텍",
+      "qty": 1426,
+      "weight": 1.97
     },
     {
       "name": "LG에너지솔루션",
       "qty": 85,
-      "weight": 1.81
+      "weight": 1.85
+    },
+    {
+      "name": "현대건설",
+      "qty": 237,
+      "weight": 1.78
+    },
+    {
+      "name": "이오테크닉스",
+      "qty": 62,
+      "weight": 1.7
     },
     {
       "name": "삼성에스디에스",
       "qty": 130,
-      "weight": 1.64
-    },
-    {
-      "name": "피에스케이홀딩스",
-      "qty": 146,
-      "weight": 1.18
+      "weight": 1.61
     },
     {
       "name": "SK텔레콤",
       "qty": 189,
-      "weight": 1.04
+      "weight": 1.03
+    },
+    {
+      "name": "피에스케이홀딩스",
+      "qty": 146,
+      "weight": 1.02
     },
     {
       "name": "HD현대중공업",
-      "qty": 28,
-      "weight": 0.97
+      "qty": 23,
+      "weight": 0.85
     },
     {
       "name": "저스템",
       "qty": 699,
-      "weight": 0.65
+      "weight": 0.63
     },
     {
       "name": "두산에너빌리티",
       "qty": 110,
-      "weight": 0.55
+      "weight": 0.57
     }
   ],
   "KODEX 로봇액티브": [
     {
       "name": "원화예금",
-      "qty": 39092777,
+      "qty": 39113890,
       "weight": 0.0
     },
     {
@@ -1495,82 +2063,77 @@
     {
       "name": "로보티즈",
       "qty": 509,
-      "weight": 8.61
+      "weight": 8.29
     },
     {
       "name": "현대모비스",
       "qty": 248,
-      "weight": 7.72
+      "weight": 7.79
     },
     {
       "name": "현대오토에버",
       "qty": 210,
-      "weight": 7.36
+      "weight": 7.69
     },
     {
       "name": "LG전자",
       "qty": 592,
-      "weight": 6.84
+      "weight": 7.07
     },
     {
       "name": "레인보우로보틱스",
       "qty": 193,
-      "weight": 6.17
-    },
-    {
-      "name": "두산로보틱스",
-      "qty": 1072,
-      "weight": 6.07
+      "weight": 6.25
     },
     {
       "name": "현대차",
       "qty": 190,
-      "weight": 5.91
+      "weight": 6.03
     },
     {
       "name": "SK하이닉스",
       "qty": 53,
-      "weight": 5.84
+      "weight": 5.95
+    },
+    {
+      "name": "두산로보틱스",
+      "qty": 1072,
+      "weight": 5.86
     },
     {
       "name": "NAVER",
       "qty": 342,
-      "weight": 4.33
+      "weight": 4.16
     },
     {
       "name": "LG이노텍",
       "qty": 69,
-      "weight": 3.66
+      "weight": 4.09
     },
     {
       "name": "에스피지",
       "qty": 675,
-      "weight": 3.28
+      "weight": 3.26
     },
     {
       "name": "삼성에스디에스",
       "qty": 250,
-      "weight": 3.04
-    },
-    {
-      "name": "뉴로메카",
-      "qty": 1004,
-      "weight": 2.55
+      "weight": 2.94
     },
     {
       "name": "HD현대",
       "qty": 192,
-      "weight": 2.4
+      "weight": 2.52
+    },
+    {
+      "name": "뉴로메카",
+      "qty": 1004,
+      "weight": 2.46
     },
     {
       "name": "유진로봇",
       "qty": 1897,
-      "weight": 1.9
-    },
-    {
-      "name": "KT",
-      "qty": 539,
-      "weight": 1.51
+      "weight": 1.85
     },
     {
       "name": "클로봇",
@@ -1578,151 +2141,156 @@
       "weight": 1.5
     },
     {
+      "name": "KT",
+      "qty": 539,
+      "weight": 1.47
+    },
+    {
       "name": "유일로보틱스",
       "qty": 340,
-      "weight": 1.46
+      "weight": 1.42
     },
     {
       "name": "원익홀딩스",
       "qty": 902,
-      "weight": 1.43
+      "weight": 1.27
     },
     {
       "name": "삼현",
       "qty": 467,
-      "weight": 1.29
+      "weight": 1.27
     },
     {
       "name": "에스비비테크",
       "qty": 325,
-      "weight": 1.04
-    },
-    {
-      "name": "고영",
-      "qty": 513,
-      "weight": 1.03
-    },
-    {
-      "name": "큐렉소",
-      "qty": 1807,
-      "weight": 1.02
+      "weight": 1.0
     },
     {
       "name": "현대로템",
       "qty": 94,
-      "weight": 1.0
+      "weight": 0.98
+    },
+    {
+      "name": "큐렉소",
+      "qty": 1807,
+      "weight": 0.96
+    },
+    {
+      "name": "고영",
+      "qty": 513,
+      "weight": 0.94
     },
     {
       "name": "제이브이엠",
       "qty": 524,
-      "weight": 0.6
+      "weight": 0.57
     },
     {
       "name": "카카오",
       "qty": 239,
-      "weight": 0.51
+      "weight": 0.48
     },
     {
       "name": "엔젤로보틱스",
       "qty": 293,
-      "weight": 0.38
+      "weight": 0.36
     },
     {
       "name": "하이젠알앤엠",
       "qty": 249,
-      "weight": 0.35
-    },
-    {
-      "name": "비에이치",
-      "qty": 216,
-      "weight": 0.3
+      "weight": 0.34
     },
     {
       "name": "LIG디펜스앤에어로스페이스",
       "qty": 7,
+      "weight": 0.29
+    },
+    {
+      "name": "비에이치",
+      "qty": 216,
       "weight": 0.28
     },
     {
       "name": "에스오에스랩",
       "qty": 412,
-      "weight": 0.26
+      "weight": 0.27
     },
     {
       "name": "나우로보틱스",
       "qty": 257,
-      "weight": 0.25
+      "weight": 0.24
     }
   ],
   "KoAct 글로벌K컬처밸류체인액티브": [
     {
       "name": "설정현금액",
-      "qty": 484128921,
+      "qty": 483829019,
       "weight": 0.0
     },
     {
       "name": "원화현금",
-      "qty": 5895170,
+      "qty": 5868975,
       "weight": 0.0
     },
     {
       "name": "F&F",
       "qty": 528,
-      "weight": 9.48
+      "weight": 9.03
     },
     {
       "name": "하이브",
       "qty": 176,
-      "weight": 8.28
+      "weight": 8.05
     },
     {
       "name": "삼양식품",
       "qty": 33,
-      "weight": 7.9
+      "weight": 7.86
     },
     {
       "name": "에이피알",
       "qty": 89,
-      "weight": 7.33
+      "weight": 7.75
     },
     {
       "name": "현대백화점",
       "qty": 191,
-      "weight": 7.08
+      "weight": 7.32
     },
     {
       "name": "미스토홀딩스",
       "qty": 665,
-      "weight": 5.94
+      "weight": 6.09
     },
     {
       "name": "한섬",
       "qty": 768,
-      "weight": 3.63
-    },
-    {
-      "name": "오리온",
-      "qty": 125,
-      "weight": 3.54
+      "weight": 3.71
     },
     {
       "name": "Webtoon Entertainment Inc",
       "qty": 936,
-      "weight": 3.46
+      "weight": 3.55
+    },
+    {
+      "name": "오리온",
+      "qty": 125,
+      "weight": 3.5
     },
     {
       "name": "코스메카코리아",
       "qty": 225,
-      "weight": 3.24
+      "weight": 3.33
     },
     {
       "name": "한국콜마",
       "qty": 164,
-      "weight": 2.96
+      "weight": 2.99
     },
     {
       "name": "네오팜",
       "qty": 712,
-      "weight": 2.55
+      "weight": 2.57
     },
     {
       "name": "코스맥스",
@@ -1732,190 +2300,316 @@
     {
       "name": "와이지엔터테인먼트",
       "qty": 241,
-      "weight": 2.31
+      "weight": 2.27
     },
     {
       "name": "파마리서치",
       "qty": 32,
-      "weight": 1.93
+      "weight": 2.03
     },
     {
       "name": "스튜디오드래곤",
       "qty": 254,
-      "weight": 1.34
+      "weight": 1.35
     }
   ],
-  "TIME K컬처액티브": [],
+  "TIME K컬처액티브": [
+    {
+      "name": "롯데쇼핑",
+      "qty": 400,
+      "weight": 6.87
+    },
+    {
+      "name": "신세계",
+      "qty": 100,
+      "weight": 6.5
+    },
+    {
+      "name": "삼양식품",
+      "qty": 60,
+      "weight": 6.3
+    },
+    {
+      "name": "NC",
+      "qty": 250,
+      "weight": 6.02
+    },
+    {
+      "name": "펄어비스",
+      "qty": 1593,
+      "weight": 5.87
+    },
+    {
+      "name": "에이피알",
+      "qty": 151,
+      "weight": 5.79
+    },
+    {
+      "name": "휴젤",
+      "qty": 250,
+      "weight": 5.71
+    },
+    {
+      "name": "달바글로벌",
+      "qty": 301,
+      "weight": 5.46
+    },
+    {
+      "name": "CJ",
+      "qty": 300,
+      "weight": 4.82
+    },
+    {
+      "name": "JYP Ent.",
+      "qty": 801,
+      "weight": 4.13
+    },
+    {
+      "name": "하이브",
+      "qty": 200,
+      "weight": 4.03
+    },
+    {
+      "name": "와이지엔터테인먼트",
+      "qty": 899,
+      "weight": 3.73
+    },
+    {
+      "name": "엘앤씨바이오",
+      "qty": 500,
+      "weight": 3.51
+    },
+    {
+      "name": "현대백화점",
+      "qty": 200,
+      "weight": 3.38
+    },
+    {
+      "name": "올릭스",
+      "qty": 301,
+      "weight": 3.35
+    },
+    {
+      "name": "실리콘투",
+      "qty": 1000,
+      "weight": 3.3
+    },
+    {
+      "name": "에스엠",
+      "qty": 400,
+      "weight": 2.99
+    },
+    {
+      "name": "파마리서치",
+      "qty": 97,
+      "weight": 2.71
+    },
+    {
+      "name": "아이티센글로벌",
+      "qty": 701,
+      "weight": 2.71
+    },
+    {
+      "name": "제닉",
+      "qty": 1302,
+      "weight": 2.63
+    },
+    {
+      "name": "코스메카코리아",
+      "qty": 401,
+      "weight": 2.62
+    },
+    {
+      "name": "서부T&D",
+      "qty": 2002,
+      "weight": 2.08
+    },
+    {
+      "name": "CJ ENM",
+      "qty": 500,
+      "weight": 1.78
+    },
+    {
+      "name": "스튜디오드래곤",
+      "qty": 504,
+      "weight": 1.18
+    },
+    {
+      "name": "더핑크퐁컴퍼니",
+      "qty": 998,
+      "weight": 1.08
+    }
+  ],
   "KoAct 배당성장액티브": [
     {
       "name": "원화예금",
-      "qty": 6811744,
+      "qty": 6592465,
       "weight": 0.0
     },
     {
       "name": "SK하이닉스",
       "qty": 129,
-      "weight": 22.12
+      "weight": 22.59
     },
     {
       "name": "삼성전자우",
       "qty": 1299,
-      "weight": 21.45
+      "weight": 21.48
     },
     {
       "name": "HD현대중공업",
       "qty": 80,
-      "weight": 4.15
+      "weight": 4.37
     },
     {
       "name": "SK스퀘어",
       "qty": 25,
-      "weight": 2.71
-    },
-    {
-      "name": "리노공업",
-      "qty": 231,
-      "weight": 1.93
-    },
-    {
-      "name": "HD한국조선해양",
-      "qty": 57,
-      "weight": 1.81
+      "weight": 2.7
     },
     {
       "name": "삼성전기",
       "qty": 13,
-      "weight": 1.78
+      "weight": 1.99
     },
     {
-      "name": "F&F",
-      "qty": 247,
-      "weight": 1.69
+      "name": "HD한국조선해양",
+      "qty": 57,
+      "weight": 1.84
+    },
+    {
+      "name": "리노공업",
+      "qty": 231,
+      "weight": 1.71
     },
     {
       "name": "더블유게임즈",
       "qty": 296,
-      "weight": 1.68
-    },
-    {
-      "name": "한국금융지주",
-      "qty": 81,
-      "weight": 1.55
+      "weight": 1.58
     },
     {
       "name": "HD현대",
       "qty": 77,
-      "weight": 1.5
+      "weight": 1.58
+    },
+    {
+      "name": "한국금융지주",
+      "qty": 81,
+      "weight": 1.56
+    },
+    {
+      "name": "F&F",
+      "qty": 247,
+      "weight": 1.54
     },
     {
       "name": "KB금융",
       "qty": 114,
-      "weight": 1.47
+      "weight": 1.48
     },
     {
       "name": "코나아이",
       "qty": 357,
-      "weight": 1.42
-    },
-    {
-      "name": "비에이치",
-      "qty": 646,
-      "weight": 1.38
+      "weight": 1.35
     },
     {
       "name": "현대차",
       "qty": 27,
-      "weight": 1.31
+      "weight": 1.34
     },
     {
-      "name": "키움증권",
-      "qty": 44,
-      "weight": 1.28
-    },
-    {
-      "name": "NAVER",
-      "qty": 60,
-      "weight": 1.18
+      "name": "비에이치",
+      "qty": 646,
+      "weight": 1.33
     },
     {
       "name": "삼성물산",
       "qty": 33,
+      "weight": 1.25
+    },
+    {
+      "name": "키움증권",
+      "qty": 44,
+      "weight": 1.24
+    },
+    {
+      "name": "NAVER",
+      "qty": 60,
       "weight": 1.14
     },
     {
-      "name": "고영",
-      "qty": 363,
+      "name": "대덕",
+      "qty": 684,
       "weight": 1.13
     },
     {
       "name": "이노션",
       "qty": 670,
-      "weight": 1.12
+      "weight": 1.08
     },
     {
-      "name": "대덕",
-      "qty": 684,
-      "weight": 1.12
-    },
-    {
-      "name": "테스",
-      "qty": 73,
-      "weight": 1.06
-    },
-    {
-      "name": "하나금융지주",
-      "qty": 101,
-      "weight": 0.97
+      "name": "고영",
+      "qty": 363,
+      "weight": 1.04
     },
     {
       "name": "삼성생명",
       "qty": 31,
-      "weight": 0.95
+      "weight": 1.0
+    },
+    {
+      "name": "하나금융지주",
+      "qty": 101,
+      "weight": 1.0
+    },
+    {
+      "name": "테스",
+      "qty": 73,
+      "weight": 0.99
     },
     {
       "name": "코리안리",
       "qty": 865,
-      "weight": 0.94
-    },
-    {
-      "name": "CJ",
-      "qty": 63,
-      "weight": 0.88
+      "weight": 0.91
     },
     {
       "name": "에이피알",
       "qty": 27,
-      "weight": 0.85
+      "weight": 0.86
+    },
+    {
+      "name": "CJ",
+      "qty": 63,
+      "weight": 0.84
     },
     {
       "name": "다우데이타",
       "qty": 542,
-      "weight": 0.85
+      "weight": 0.82
     },
     {
       "name": "제이에스코퍼레이션",
       "qty": 912,
-      "weight": 0.84
+      "weight": 0.82
     },
     {
       "name": "KT&G",
       "qty": 55,
-      "weight": 0.82
+      "weight": 0.79
     },
     {
       "name": "현대백화점",
       "qty": 55,
-      "weight": 0.78
+      "weight": 0.77
     },
     {
-      "name": "롯데쇼핑",
-      "qty": 44,
+      "name": "SK",
+      "qty": 14,
       "weight": 0.69
     },
     {
       "name": "삼성화재",
       "qty": 13,
-      "weight": 0.68
+      "weight": 0.67
     },
     {
       "name": "하나마이크론",
@@ -1923,48 +2617,33 @@
       "weight": 0.67
     },
     {
-      "name": "SK",
-      "qty": 14,
-      "weight": 0.66
+      "name": "HD현대일렉트릭",
+      "qty": 7,
+      "weight": 0.64
     },
     {
       "name": "SK텔레콤",
       "qty": 79,
-      "weight": 0.65
+      "weight": 0.64
     },
     {
-      "name": "HD현대일렉트릭",
-      "qty": 7,
+      "name": "롯데쇼핑",
+      "qty": 44,
       "weight": 0.63
     },
     {
       "name": "한화에어로스페이스",
       "qty": 7,
-      "weight": 0.6
-    },
-    {
-      "name": "삼양식품",
-      "qty": 6,
-      "weight": 0.55
+      "weight": 0.58
     },
     {
       "name": "효성중공업",
       "qty": 2,
-      "weight": 0.54
+      "weight": 0.57
     },
     {
-      "name": "한미약품",
-      "qty": 16,
-      "weight": 0.52
-    },
-    {
-      "name": "케이씨",
-      "qty": 195,
-      "weight": 0.52
-    },
-    {
-      "name": "한텍",
-      "qty": 204,
+      "name": "삼양식품",
+      "qty": 6,
       "weight": 0.52
     },
     {
@@ -1973,8 +2652,13 @@
       "weight": 0.51
     },
     {
-      "name": "크래프톤",
-      "qty": 27,
+      "name": "한미약품",
+      "qty": 16,
+      "weight": 0.51
+    },
+    {
+      "name": "한텍",
+      "qty": 204,
       "weight": 0.51
     },
     {
@@ -1983,13 +2667,18 @@
       "weight": 0.5
     },
     {
-      "name": "한국토지신탁",
-      "qty": 4720,
-      "weight": 0.47
+      "name": "케이씨",
+      "qty": 195,
+      "weight": 0.5
     },
     {
-      "name": "두산",
-      "qty": 3,
+      "name": "크래프톤",
+      "qty": 27,
+      "weight": 0.49
+    },
+    {
+      "name": "한국토지신탁",
+      "qty": 4720,
       "weight": 0.45
     },
     {
@@ -1998,9 +2687,14 @@
       "weight": 0.44
     },
     {
+      "name": "두산",
+      "qty": 3,
+      "weight": 0.39
+    },
+    {
       "name": "대신증권",
       "qty": 149,
-      "weight": 0.35
+      "weight": 0.34
     },
     {
       "name": "미스토홀딩스",
@@ -2020,17 +2714,12 @@
     {
       "name": "강원랜드",
       "qty": 245,
-      "weight": 0.31
-    },
-    {
-      "name": "한전KPS",
-      "qty": 58,
       "weight": 0.3
     },
     {
       "name": "DB손해보험",
       "qty": 25,
-      "weight": 0.3
+      "weight": 0.29
     },
     {
       "name": "포스코퓨처엠",
@@ -2038,43 +2727,43 @@
       "weight": 0.29
     },
     {
-      "name": "이지홀딩스",
-      "qty": 778,
+      "name": "해성디에스",
+      "qty": 41,
       "weight": 0.27
     },
     {
-      "name": "해성디에스",
-      "qty": 41,
+      "name": "이지홀딩스",
+      "qty": 778,
       "weight": 0.26
-    },
-    {
-      "name": "현대건설",
-      "qty": 20,
-      "weight": 0.25
-    },
-    {
-      "name": "LS",
-      "qty": 8,
-      "weight": 0.25
     },
     {
       "name": "LIG디펜스앤에어로스페이스",
       "qty": 4,
-      "weight": 0.25
+      "weight": 0.26
     },
     {
-      "name": "영원무역",
-      "qty": 37,
-      "weight": 0.24
+      "name": "LS",
+      "qty": 8,
+      "weight": 0.26
     },
     {
       "name": "DN오토모티브",
       "qty": 74,
-      "weight": 0.24
+      "weight": 0.25
     },
     {
       "name": "한화솔루션",
       "qty": 83,
+      "weight": 0.25
+    },
+    {
+      "name": "한전KPS",
+      "qty": 58,
+      "weight": 0.24
+    },
+    {
+      "name": "영원무역",
+      "qty": 37,
       "weight": 0.23
     },
     {
@@ -2085,7 +2774,12 @@
     {
       "name": "오리온홀딩스",
       "qty": 109,
-      "weight": 0.23
+      "weight": 0.22
+    },
+    {
+      "name": "현대건설",
+      "qty": 20,
+      "weight": 0.22
     },
     {
       "name": "포스코인터내셔널",
@@ -2095,7 +2789,12 @@
     {
       "name": "LX세미콘",
       "qty": 49,
-      "weight": 0.2
+      "weight": 0.19
+    },
+    {
+      "name": "대한항공",
+      "qty": 80,
+      "weight": 0.18
     },
     {
       "name": "서부T&D",
@@ -2108,127 +2807,293 @@
       "weight": 0.17
     },
     {
-      "name": "대한항공",
-      "qty": 80,
-      "weight": 0.17
-    },
-    {
       "name": "수산인더스트리",
       "qty": 86,
       "weight": 0.16
     }
   ],
-  "TIME Korea플러스배당액티브": [],
+  "TIME Korea플러스배당액티브": [
+    {
+      "name": "SK하이닉스",
+      "qty": 51,
+      "weight": 16.18
+    },
+    {
+      "name": "삼성전자",
+      "qty": 305,
+      "weight": 14.26
+    },
+    {
+      "name": "삼성전기",
+      "qty": 18,
+      "weight": 4.99
+    },
+    {
+      "name": "한국금융지주",
+      "qty": 120,
+      "weight": 4.19
+    },
+    {
+      "name": "NH투자증권",
+      "qty": 821,
+      "weight": 3.72
+    },
+    {
+      "name": "삼성증권",
+      "qty": 202,
+      "weight": 3.43
+    },
+    {
+      "name": "두산",
+      "qty": 14,
+      "weight": 3.32
+    },
+    {
+      "name": "삼양식품",
+      "qty": 21,
+      "weight": 3.32
+    },
+    {
+      "name": "KB금융",
+      "qty": 140,
+      "weight": 3.29
+    },
+    {
+      "name": "삼성생명",
+      "qty": 49,
+      "weight": 2.88
+    },
+    {
+      "name": "키움증권",
+      "qty": 55,
+      "weight": 2.8
+    },
+    {
+      "name": "삼성물산",
+      "qty": 40,
+      "weight": 2.75
+    },
+    {
+      "name": "현대차",
+      "qty": 30,
+      "weight": 2.69
+    },
+    {
+      "name": "SK",
+      "qty": 30,
+      "weight": 2.69
+    },
+    {
+      "name": "현대백화점",
+      "qty": 95,
+      "weight": 2.41
+    },
+    {
+      "name": "우리금융지주",
+      "qty": 502,
+      "weight": 2.27
+    },
+    {
+      "name": "미래에셋증권",
+      "qty": 300,
+      "weight": 2.15
+    },
+    {
+      "name": "DB손해보험",
+      "qty": 100,
+      "weight": 2.11
+    },
+    {
+      "name": "한화투자증권",
+      "qty": 2199,
+      "weight": 1.8
+    },
+    {
+      "name": "하나금융지주",
+      "qty": 100,
+      "weight": 1.79
+    },
+    {
+      "name": "메리츠금융지주",
+      "qty": 110,
+      "weight": 1.7
+    },
+    {
+      "name": "BNK금융지주",
+      "qty": 647,
+      "weight": 1.62
+    },
+    {
+      "name": "유안타증권",
+      "qty": 2191,
+      "weight": 1.58
+    },
+    {
+      "name": "한화",
+      "qty": 80,
+      "weight": 1.33
+    },
+    {
+      "name": "KT&G",
+      "qty": 50,
+      "weight": 1.31
+    },
+    {
+      "name": "POSCO홀딩스",
+      "qty": 21,
+      "weight": 1.15
+    },
+    {
+      "name": "LS",
+      "qty": 19,
+      "weight": 1.11
+    },
+    {
+      "name": "기업은행",
+      "qty": 343,
+      "weight": 1.07
+    },
+    {
+      "name": "현대차2우B",
+      "qty": 29,
+      "weight": 1.03
+    },
+    {
+      "name": "현대모비스",
+      "qty": 10,
+      "weight": 0.89
+    },
+    {
+      "name": "신한지주",
+      "qty": 60,
+      "weight": 0.88
+    },
+    {
+      "name": "KT",
+      "qty": 99,
+      "weight": 0.76
+    },
+    {
+      "name": "SK텔레콤",
+      "qty": 50,
+      "weight": 0.73
+    },
+    {
+      "name": "CJ",
+      "qty": 30,
+      "weight": 0.73
+    }
+  ],
   "KODEX 신재생에너지액티브": [
     {
       "name": "원화예금",
-      "qty": 34209192,
+      "qty": 33805655,
       "weight": 0.0
-    },
-    {
-      "name": "OCI홀딩스",
-      "qty": 593,
-      "weight": 7.98
     },
     {
       "name": "서진시스템",
       "qty": 2338,
-      "weight": 7.88
+      "weight": 7.82
+    },
+    {
+      "name": "OCI홀딩스",
+      "qty": 593,
+      "weight": 7.18
     },
     {
       "name": "삼성SDI",
       "qty": 300,
-      "weight": 7.25
+      "weight": 7.1
     },
     {
       "name": "HD현대에너지솔루션",
       "qty": 1020,
-      "weight": 6.89
-    },
-    {
-      "name": "산일전기",
-      "qty": 546,
-      "weight": 5.67
+      "weight": 6.9
     },
     {
       "name": "LS ELECTRIC",
       "qty": 536,
-      "weight": 5.35
+      "weight": 5.9
+    },
+    {
+      "name": "산일전기",
+      "qty": 546,
+      "weight": 5.86
     },
     {
       "name": "효성중공업",
       "qty": 32,
-      "weight": 4.85
+      "weight": 5.14
     },
     {
       "name": "비나텍",
       "qty": 898,
-      "weight": 4.25
+      "weight": 4.37
     },
     {
       "name": "씨에스윈드",
       "qty": 2034,
-      "weight": 3.79
+      "weight": 3.81
     },
     {
       "name": "SK오션플랜트",
       "qty": 5027,
-      "weight": 3.53
+      "weight": 3.63
     },
     {
       "name": "HD현대일렉트릭",
       "qty": 69,
-      "weight": 3.5
-    },
-    {
-      "name": "비에이치아이",
-      "qty": 808,
-      "weight": 2.92
+      "weight": 3.52
     },
     {
       "name": "일진전기",
       "qty": 709,
-      "weight": 2.6
+      "weight": 2.67
     },
     {
       "name": "포스코퓨처엠",
       "qty": 275,
-      "weight": 2.46
+      "weight": 2.48
     },
     {
       "name": "SK이터닉스",
       "qty": 1123,
-      "weight": 2.17
+      "weight": 2.35
+    },
+    {
+      "name": "비에이치아이",
+      "qty": 808,
+      "weight": 2.34
     },
     {
       "name": "한화솔루션",
       "qty": 1258,
-      "weight": 1.97
+      "weight": 2.08
     },
     {
       "name": "엘앤에프",
       "qty": 315,
-      "weight": 1.89
+      "weight": 1.91
     },
     {
       "name": "SNT에너지",
       "qty": 1171,
-      "weight": 1.76
+      "weight": 1.84
     },
     {
       "name": "LS",
       "qty": 86,
-      "weight": 1.49
+      "weight": 1.54
     },
     {
       "name": "비츠로셀",
       "qty": 620,
-      "weight": 1.3
+      "weight": 1.23
     },
     {
-      "name": "삼아알미늄",
-      "qty": 440,
-      "weight": 1.18
+      "name": "에코프로비엠",
+      "qty": 149,
+      "weight": 1.19
     },
     {
       "name": "미코",
@@ -2236,44 +3101,44 @@
       "weight": 1.16
     },
     {
-      "name": "에코프로비엠",
-      "qty": 149,
-      "weight": 1.14
-    },
-    {
-      "name": "대원전선",
-      "qty": 2381,
+      "name": "삼아알미늄",
+      "qty": 440,
       "weight": 1.12
-    },
-    {
-      "name": "한텍",
-      "qty": 690,
-      "weight": 0.98
     },
     {
       "name": "후성",
       "qty": 1138,
-      "weight": 0.97
+      "weight": 1.09
+    },
+    {
+      "name": "대원전선",
+      "qty": 2381,
+      "weight": 1.09
+    },
+    {
+      "name": "한텍",
+      "qty": 690,
+      "weight": 0.96
     },
     {
       "name": "코세스",
       "qty": 568,
-      "weight": 0.97
+      "weight": 0.92
     },
     {
       "name": "태웅",
       "qty": 588,
-      "weight": 0.85
-    },
-    {
-      "name": "세아베스틸지주",
-      "qty": 366,
-      "weight": 0.78
+      "weight": 0.86
     },
     {
       "name": "레이크머티리얼즈",
       "qty": 1033,
-      "weight": 0.76
+      "weight": 0.78
+    },
+    {
+      "name": "세아베스틸지주",
+      "qty": 366,
+      "weight": 0.73
     },
     {
       "name": "상신이디피",
@@ -2288,17 +3153,17 @@
     {
       "name": "성일하이텍",
       "qty": 291,
-      "weight": 0.68
-    },
-    {
-      "name": "대명에너지",
-      "qty": 990,
-      "weight": 0.62
+      "weight": 0.67
     },
     {
       "name": "대한전선",
       "qty": 360,
-      "weight": 0.61
+      "weight": 0.62
+    },
+    {
+      "name": "대명에너지",
+      "qty": 990,
+      "weight": 0.6
     },
     {
       "name": "에코프로머티",
@@ -2313,7 +3178,7 @@
     {
       "name": "선익시스템",
       "qty": 148,
-      "weight": 0.52
+      "weight": 0.47
     },
     {
       "name": "한중엔시에스",
@@ -2323,7 +3188,12 @@
     {
       "name": "천보",
       "qty": 218,
-      "weight": 0.42
+      "weight": 0.41
+    },
+    {
+      "name": "한선엔지니어링",
+      "qty": 429,
+      "weight": 0.4
     },
     {
       "name": "대우건설",
@@ -2331,14 +3201,9 @@
       "weight": 0.39
     },
     {
-      "name": "한선엔지니어링",
-      "qty": 429,
-      "weight": 0.38
-    },
-    {
       "name": "나노",
       "qty": 1721,
-      "weight": 0.35
+      "weight": 0.33
     },
     {
       "name": "지엔씨에너지",
@@ -2346,39 +3211,39 @@
       "weight": 0.31
     },
     {
-      "name": "DI동일",
-      "qty": 282,
-      "weight": 0.29
-    },
-    {
       "name": "씨에스베어링",
       "qty": 1471,
-      "weight": 0.29
+      "weight": 0.28
+    },
+    {
+      "name": "DI동일",
+      "qty": 282,
+      "weight": 0.28
     },
     {
       "name": "아모센스",
       "qty": 629,
-      "weight": 0.27
-    },
-    {
-      "name": "주성엔지니어링",
-      "qty": 20,
-      "weight": 0.21
+      "weight": 0.26
     },
     {
       "name": "두산퓨얼셀",
       "qty": 62,
-      "weight": 0.2
+      "weight": 0.21
+    },
+    {
+      "name": "주성엔지니어링",
+      "qty": 20,
+      "weight": 0.19
     },
     {
       "name": "유니슨",
       "qty": 3881,
-      "weight": 0.17
+      "weight": 0.15
     },
     {
       "name": "우양에이치씨",
       "qty": 373,
-      "weight": 0.14
+      "weight": 0.15
     },
     {
       "name": "현대차",
@@ -2388,7 +3253,7 @@
     {
       "name": "두산에너빌리티",
       "qty": 32,
-      "weight": 0.13
+      "weight": 0.14
     },
     {
       "name": "현대모비스",
@@ -2396,13 +3261,13 @@
       "weight": 0.11
     },
     {
-      "name": "POSCO홀딩스",
-      "qty": 6,
+      "name": "LG전자",
+      "qty": 10,
       "weight": 0.1
     },
     {
-      "name": "LG전자",
-      "qty": 10,
+      "name": "POSCO홀딩스",
+      "qty": 6,
       "weight": 0.1
     },
     {
@@ -2418,16 +3283,11 @@
     {
       "name": "LS에코에너지",
       "qty": 34,
-      "weight": 0.09
+      "weight": 0.1
     },
     {
       "name": "에어레인",
       "qty": 436,
-      "weight": 0.08
-    },
-    {
-      "name": "S-Oil",
-      "qty": 16,
       "weight": 0.08
     },
     {
@@ -2438,6 +3298,11 @@
     {
       "name": "한솔케미칼",
       "qty": 6,
+      "weight": 0.08
+    },
+    {
+      "name": "S-Oil",
+      "qty": 16,
       "weight": 0.08
     },
     {
@@ -2466,18 +3331,13 @@
       "weight": 0.04
     },
     {
-      "name": "한전KPS",
-      "qty": 15,
+      "name": "세진중공업",
+      "qty": 57,
       "weight": 0.04
     },
     {
-      "name": "현대건설",
-      "qty": 6,
-      "weight": 0.04
-    },
-    {
-      "name": "한전기술",
-      "qty": 6,
+      "name": "한온시스템",
+      "qty": 156,
       "weight": 0.04
     },
     {
@@ -2486,13 +3346,18 @@
       "weight": 0.04
     },
     {
-      "name": "세진중공업",
-      "qty": 57,
+      "name": "현대건설",
+      "qty": 6,
       "weight": 0.04
     },
     {
-      "name": "한온시스템",
-      "qty": 156,
+      "name": "한전KPS",
+      "qty": 15,
+      "weight": 0.03
+    },
+    {
+      "name": "한전기술",
+      "qty": 6,
       "weight": 0.03
     },
     {
@@ -2501,8 +3366,8 @@
       "weight": 0.03
     },
     {
-      "name": "넥스틸",
-      "qty": 37,
+      "name": "한국전력",
+      "qty": 13,
       "weight": 0.02
     },
     {
@@ -2511,72 +3376,193 @@
       "weight": 0.02
     },
     {
-      "name": "한국전력",
-      "qty": 13,
+      "name": "넥스틸",
+      "qty": 37,
       "weight": 0.02
     }
   ],
-  "TIMEFOLIO K신재생에너지액티브": [],
+  "TIMEFOLIO K신재생에너지액티브": [
+    {
+      "name": "SK하이닉스",
+      "qty": 206,
+      "weight": 15.07
+    },
+    {
+      "name": "삼성전자",
+      "qty": 1187,
+      "weight": 12.79
+    },
+    {
+      "name": "한화솔루션",
+      "qty": 7047,
+      "weight": 8.72
+    },
+    {
+      "name": "삼성전기",
+      "qty": 118,
+      "weight": 7.54
+    },
+    {
+      "name": "삼성SDI",
+      "qty": 389,
+      "weight": 6.88
+    },
+    {
+      "name": "현대차",
+      "qty": 293,
+      "weight": 6.06
+    },
+    {
+      "name": "한화",
+      "qty": 1199,
+      "weight": 4.61
+    },
+    {
+      "name": "대주전자재료",
+      "qty": 1000,
+      "weight": 3.92
+    },
+    {
+      "name": "동진쎄미켐",
+      "qty": 1747,
+      "weight": 3.4
+    },
+    {
+      "name": "기아",
+      "qty": 600,
+      "weight": 3.21
+    },
+    {
+      "name": "삼성물산",
+      "qty": 200,
+      "weight": 3.17
+    },
+    {
+      "name": "현대모비스",
+      "qty": 150,
+      "weight": 3.07
+    },
+    {
+      "name": "LS ELECTRIC",
+      "qty": 340,
+      "weight": 2.8
+    },
+    {
+      "name": "HD한국조선해양",
+      "qty": 193,
+      "weight": 2.6
+    },
+    {
+      "name": "원익IPS",
+      "qty": 448,
+      "weight": 2.5
+    },
+    {
+      "name": "포스코DX",
+      "qty": 2166,
+      "weight": 1.98
+    },
+    {
+      "name": "SK",
+      "qty": 95,
+      "weight": 1.96
+    },
+    {
+      "name": "LS",
+      "qty": 130,
+      "weight": 1.74
+    },
+    {
+      "name": "두산퓨얼셀",
+      "qty": 647,
+      "weight": 1.61
+    },
+    {
+      "name": "SK이노베이션",
+      "qty": 400,
+      "weight": 1.44
+    },
+    {
+      "name": "두산",
+      "qty": 23,
+      "weight": 1.26
+    },
+    {
+      "name": "POSCO홀딩스",
+      "qty": 92,
+      "weight": 1.16
+    },
+    {
+      "name": "씨에스윈드",
+      "qty": 821,
+      "weight": 1.15
+    },
+    {
+      "name": "SK오션플랜트",
+      "qty": 1868,
+      "weight": 1.01
+    },
+    {
+      "name": "LG전자",
+      "qty": 19,
+      "weight": 0.15
+    }
+  ],
   "KODEX K-친환경조선해운액티브": [
     {
       "name": "원화예금",
-      "qty": 6575874,
+      "qty": 6552166,
       "weight": 0.0
     },
     {
       "name": "HD현대중공업",
       "qty": 254,
-      "weight": 9.94
+      "weight": 10.2
     },
     {
       "name": "삼성중공업",
       "qty": 5527,
-      "weight": 8.95
+      "weight": 8.91
     },
     {
       "name": "한화오션",
       "qty": 1273,
-      "weight": 8.64
+      "weight": 8.84
     },
     {
       "name": "HD현대마린솔루션",
       "qty": 541,
-      "weight": 8.06
+      "weight": 7.76
     },
     {
       "name": "HD한국조선해양",
       "qty": 325,
-      "weight": 7.79
+      "weight": 7.71
     },
     {
       "name": "한화엔진",
       "qty": 2279,
-      "weight": 7.4
+      "weight": 7.6
     },
     {
       "name": "한국카본",
       "qty": 3333,
-      "weight": 6.37
+      "weight": 6.15
     },
     {
       "name": "HD현대",
       "qty": 403,
-      "weight": 5.92
+      "weight": 6.07
     },
     {
       "name": "HD현대마린엔진",
       "qty": 1463,
-      "weight": 5.81
-    },
-    {
-      "name": "대한조선",
-      "qty": 1094,
-      "weight": 4.08
+      "weight": 5.84
     },
     {
       "name": "SK",
       "qty": 113,
-      "weight": 4.03
+      "weight": 4.11
     },
     {
       "name": "동성화인텍",
@@ -2584,192 +3570,338 @@
       "weight": 4.0
     },
     {
+      "name": "대한조선",
+      "qty": 1094,
+      "weight": 3.96
+    },
+    {
       "name": "팬오션",
       "qty": 12613,
-      "weight": 3.94
-    },
-    {
-      "name": "HMM",
-      "qty": 2507,
-      "weight": 3.03
-    },
-    {
-      "name": "한화시스템",
-      "qty": 514,
-      "weight": 2.97
+      "weight": 3.79
     },
     {
       "name": "STX엔진",
       "qty": 1511,
-      "weight": 2.94
+      "weight": 3.11
+    },
+    {
+      "name": "HMM",
+      "qty": 2507,
+      "weight": 3.0
+    },
+    {
+      "name": "한화시스템",
+      "qty": 514,
+      "weight": 2.88
     },
     {
       "name": "HJ중공업",
       "qty": 987,
-      "weight": 1.28
+      "weight": 1.29
     },
     {
       "name": "대한해운",
       "qty": 7991,
-      "weight": 0.97
+      "weight": 0.95
     },
     {
       "name": "성광벤드",
       "qty": 486,
-      "weight": 0.88
-    },
-    {
-      "name": "GS",
-      "qty": 201,
-      "weight": 0.88
+      "weight": 0.9
     },
     {
       "name": "SK오션플랜트",
       "qty": 917,
-      "weight": 0.86
+      "weight": 0.87
+    },
+    {
+      "name": "GS",
+      "qty": 201,
+      "weight": 0.85
     },
     {
       "name": "S-Oil",
       "qty": 110,
-      "weight": 0.74
+      "weight": 0.7
     },
     {
       "name": "KSS해운",
       "qty": 570,
-      "weight": 0.34
+      "weight": 0.32
     },
     {
       "name": "롯데정밀화학",
       "qty": 62,
-      "weight": 0.18
+      "weight": 0.17
     }
   ],
-  "TIME K이노베이션액티브": [],
+  "TIME K이노베이션액티브": [
+    {
+      "name": "삼성SDI",
+      "qty": 249,
+      "weight": 9.62
+    },
+    {
+      "name": "LG에너지솔루션",
+      "qty": 295,
+      "weight": 8.67
+    },
+    {
+      "name": "POSCO홀딩스",
+      "qty": 267,
+      "weight": 7.37
+    },
+    {
+      "name": "SK하이닉스",
+      "qty": 45,
+      "weight": 7.19
+    },
+    {
+      "name": "NAVER",
+      "qty": 347,
+      "weight": 6.01
+    },
+    {
+      "name": "심텍",
+      "qty": 599,
+      "weight": 5.61
+    },
+    {
+      "name": "알테오젠",
+      "qty": 178,
+      "weight": 4.34
+    },
+    {
+      "name": "삼성전기",
+      "qty": 30,
+      "weight": 4.19
+    },
+    {
+      "name": "HD현대중공업",
+      "qty": 71,
+      "weight": 3.54
+    },
+    {
+      "name": "스피어",
+      "qty": 1401,
+      "weight": 3.45
+    },
+    {
+      "name": "LG이노텍",
+      "qty": 40,
+      "weight": 3.38
+    },
+    {
+      "name": "삼화콘덴서",
+      "qty": 300,
+      "weight": 2.95
+    },
+    {
+      "name": "NC",
+      "qty": 150,
+      "weight": 2.74
+    },
+    {
+      "name": "크래프톤",
+      "qty": 150,
+      "weight": 2.48
+    },
+    {
+      "name": "기가비스",
+      "qty": 249,
+      "weight": 2.44
+    },
+    {
+      "name": "코리아써키트",
+      "qty": 249,
+      "weight": 2.38
+    },
+    {
+      "name": "주성엔지니어링",
+      "qty": 150,
+      "weight": 2.36
+    },
+    {
+      "name": "삼성전자",
+      "qty": 100,
+      "weight": 2.35
+    },
+    {
+      "name": "로보티즈",
+      "qty": 100,
+      "weight": 2.32
+    },
+    {
+      "name": "예스티",
+      "qty": 1001,
+      "weight": 2.23
+    },
+    {
+      "name": "이노스페이스",
+      "qty": 2111,
+      "weight": 2.21
+    },
+    {
+      "name": "서진시스템",
+      "qty": 399,
+      "weight": 2.18
+    },
+    {
+      "name": "에스에프에이",
+      "qty": 1003,
+      "weight": 1.94
+    },
+    {
+      "name": "하나마이크론",
+      "qty": 500,
+      "weight": 1.78
+    },
+    {
+      "name": "에스피지",
+      "qty": 199,
+      "weight": 1.37
+    },
+    {
+      "name": "대덕전자",
+      "qty": 99,
+      "weight": 1.16
+    },
+    {
+      "name": "티엘비",
+      "qty": 149,
+      "weight": 1.06
+    },
+    {
+      "name": "대주전자재료",
+      "qty": 100,
+      "weight": 0.86
+    },
+    {
+      "name": "파두",
+      "qty": 112,
+      "weight": 0.81
+    }
+  ],
   "KoAct 반도체&2차전지핵심소재액티브": [
     {
       "name": "원화예금",
-      "qty": 6247761,
+      "qty": 6047612,
       "weight": 0.0
     },
     {
       "name": "솔브레인",
       "qty": 95,
-      "weight": 7.1
-    },
-    {
-      "name": "에스앤에스텍",
-      "qty": 581,
-      "weight": 6.28
+      "weight": 6.68
     },
     {
       "name": "한솔케미칼",
       "qty": 129,
-      "weight": 6.17
+      "weight": 6.45
+    },
+    {
+      "name": "에스앤에스텍",
+      "qty": 581,
+      "weight": 6.14
     },
     {
       "name": "대주전자재료",
       "qty": 271,
-      "weight": 5.54
+      "weight": 5.47
     },
     {
       "name": "동진쎄미켐",
       "qty": 532,
-      "weight": 5.31
+      "weight": 5.33
     },
     {
       "name": "에코프로",
       "qty": 256,
-      "weight": 5.01
+      "weight": 5.23
     },
     {
       "name": "후성",
       "qty": 1405,
-      "weight": 4.52
+      "weight": 5.18
     },
     {
       "name": "엘앤에프",
       "qty": 191,
-      "weight": 4.33
+      "weight": 4.46
     },
     {
       "name": "에코프로비엠",
       "qty": 134,
-      "weight": 3.86
-    },
-    {
-      "name": "포스코인터내셔널",
-      "qty": 373,
-      "weight": 3.75
+      "weight": 4.11
     },
     {
       "name": "포스코퓨처엠",
       "qty": 110,
-      "weight": 3.71
+      "weight": 3.81
+    },
+    {
+      "name": "포스코인터내셔널",
+      "qty": 373,
+      "weight": 3.68
     },
     {
       "name": "OCI홀딩스",
       "qty": 67,
-      "weight": 3.4
-    },
-    {
-      "name": "엘티씨",
-      "qty": 294,
-      "weight": 2.82
+      "weight": 3.12
     },
     {
       "name": "POSCO홀딩스",
       "qty": 43,
-      "weight": 2.74
+      "weight": 2.8
     },
     {
       "name": "고려아연",
       "qty": 13,
-      "weight": 2.64
+      "weight": 2.68
     },
     {
       "name": "LG화학",
       "qty": 45,
-      "weight": 2.63
+      "weight": 2.67
+    },
+    {
+      "name": "엘티씨",
+      "qty": 294,
+      "weight": 2.59
     },
     {
       "name": "레이크머티리얼즈",
       "qty": 860,
-      "weight": 2.4
-    },
-    {
-      "name": "하나머티리얼즈",
-      "qty": 190,
-      "weight": 2.35
-    },
-    {
-      "name": "원익QnC",
-      "qty": 322,
-      "weight": 2.3
+      "weight": 2.51
     },
     {
       "name": "LS에코에너지",
       "qty": 217,
-      "weight": 2.26
+      "weight": 2.43
     },
     {
-      "name": "이엔에프테크놀로지",
-      "qty": 235,
-      "weight": 2.07
+      "name": "하나머티리얼즈",
+      "qty": 190,
+      "weight": 2.33
     },
     {
-      "name": "이수페타시스",
-      "qty": 99,
-      "weight": 2.05
+      "name": "원익QnC",
+      "qty": 322,
+      "weight": 2.18
     },
     {
       "name": "덕산네오룩스",
       "qty": 317,
-      "weight": 1.97
+      "weight": 2.03
     },
     {
-      "name": "씨엠티엑스",
-      "qty": 87,
-      "weight": 1.75
+      "name": "이엔에프테크놀로지",
+      "qty": 235,
+      "weight": 2.0
+    },
+    {
+      "name": "이수페타시스",
+      "qty": 99,
+      "weight": 1.94
     },
     {
       "name": "이수스페셜티케미컬",
@@ -2779,27 +3911,32 @@
     {
       "name": "삼양엔씨켐",
       "qty": 576,
-      "weight": 1.7
+      "weight": 1.65
     },
     {
       "name": "원익머트리얼즈",
       "qty": 203,
-      "weight": 1.64
+      "weight": 1.61
     },
     {
-      "name": "OCI",
-      "qty": 82,
-      "weight": 1.46
+      "name": "씨엠티엑스",
+      "qty": 87,
+      "weight": 1.61
     },
     {
       "name": "에프에스티",
       "qty": 259,
-      "weight": 1.46
+      "weight": 1.43
+    },
+    {
+      "name": "OCI",
+      "qty": 82,
+      "weight": 1.32
     },
     {
       "name": "롯데에너지머티리얼즈",
       "qty": 110,
-      "weight": 1.05
+      "weight": 1.03
     },
     {
       "name": "오킨스전자",
@@ -2809,12 +3946,7 @@
     {
       "name": "세아베스틸지주",
       "qty": 108,
-      "weight": 0.87
-    },
-    {
-      "name": "에이치브이엠",
-      "qty": 35,
-      "weight": 0.61
+      "weight": 0.83
     },
     {
       "name": "덕산테코피아",
@@ -2822,216 +3954,216 @@
       "weight": 0.56
     },
     {
+      "name": "에이치브이엠",
+      "qty": 35,
+      "weight": 0.54
+    },
+    {
       "name": "와이씨켐",
       "qty": 218,
-      "weight": 0.51
+      "weight": 0.49
     },
     {
       "name": "현대비앤지스틸",
       "qty": 202,
-      "weight": 0.48
+      "weight": 0.46
     }
   ],
   "PLUS K제조업핵심기업액티브": [
     {
       "name": "삼성전자",
       "qty": 509,
-      "weight": 23.328
+      "weight": 23.2133
     },
     {
       "name": "SK하이닉스",
       "qty": 68,
-      "weight": 20.7767
+      "weight": 21.055
     },
     {
       "name": "삼성전자우",
       "qty": 160,
-      "weight": 4.7067
+      "weight": 4.677
     },
     {
       "name": "현대차",
       "qty": 39,
-      "weight": 3.3642
+      "weight": 3.4147
     },
     {
       "name": "SK스퀘어",
       "qty": 16,
-      "weight": 3.0878
+      "weight": 3.0595
     },
     {
       "name": "LG에너지솔루션",
       "qty": 50,
-      "weight": 2.8422
+      "weight": 2.8453
     },
     {
       "name": "현대모비스",
       "qty": 31,
-      "weight": 2.6741
+      "weight": 2.6849
     },
     {
       "name": "한화오션",
       "qty": 153,
-      "weight": 2.4504
-    },
-    {
-      "name": "두산",
-      "qty": 9,
-      "weight": 2.425
-    },
-    {
-      "name": "한화비전",
-      "qty": 209,
-      "weight": 2.2365
+      "weight": 2.555
     },
     {
       "name": "삼성전기",
       "qty": 8,
-      "weight": 1.9486
+      "weight": 2.1642
+    },
+    {
+      "name": "두산",
+      "qty": 9,
+      "weight": 2.0815
+    },
+    {
+      "name": "한화비전",
+      "qty": 209,
+      "weight": 2.0675
     },
     {
       "name": "삼성SDI",
       "qty": 25,
-      "weight": 1.915
-    },
-    {
-      "name": "삼성중공업",
-      "qty": 441,
-      "weight": 1.6859
+      "weight": 1.8709
     },
     {
       "name": "HD현대중공업",
       "qty": 18,
-      "weight": 1.6627
+      "weight": 1.7392
     },
     {
-      "name": "OCI홀딩스",
-      "qty": 36,
-      "weight": 1.5348
+      "name": "삼성중공업",
+      "qty": 441,
+      "weight": 1.7098
+    },
+    {
+      "name": "두산에너빌리티",
+      "qty": 126,
+      "weight": 1.7017
     },
     {
       "name": "대덕전자",
       "qty": 64,
-      "weight": 1.5025
-    },
-    {
-      "name": "테스",
-      "qty": 55,
-      "weight": 1.4241
+      "weight": 1.4525
     },
     {
       "name": "DL이앤씨",
       "qty": 135,
-      "weight": 1.4178
+      "weight": 1.4433
+    },
+    {
+      "name": "OCI홀딩스",
+      "qty": 36,
+      "weight": 1.3787
     },
     {
       "name": "HPSP",
       "qty": 118,
-      "weight": 1.199
+      "weight": 1.3334
     },
     {
       "name": "한화솔루션",
       "qty": 222,
-      "weight": 1.1673
+      "weight": 1.1627
     },
     {
       "name": "DI동일",
       "qty": 353,
-      "weight": 1.1663
+      "weight": 1.1202
     },
     {
       "name": "솔루스첨단소재",
       "qty": 641,
-      "weight": 1.1113
-    },
-    {
-      "name": "심텍",
-      "qty": 59,
-      "weight": 1.0908
-    },
-    {
-      "name": "대주전자재료",
-      "qty": 60,
-      "weight": 1.03
-    },
-    {
-      "name": "LIG디펜스앤에어로스페이스",
-      "qty": 9,
-      "weight": 0.9874
+      "weight": 1.0895
     },
     {
       "name": "삼성물산",
       "qty": 16,
-      "weight": 0.9823
+      "weight": 1.0718
     },
     {
-      "name": "두산에너빌리티",
-      "qty": 70,
-      "weight": 0.9261
+      "name": "심텍",
+      "qty": 59,
+      "weight": 1.0707
     },
     {
-      "name": "이수페타시스",
-      "qty": 53,
-      "weight": 0.9219
+      "name": "LIG디펜스앤에어로스페이스",
+      "qty": 9,
+      "weight": 1.0292
+    },
+    {
+      "name": "현대건설",
+      "qty": 51,
+      "weight": 1.0008
+    },
+    {
+      "name": "대주전자재료",
+      "qty": 60,
+      "weight": 0.9947
     },
     {
       "name": "에코프로에이치엔",
       "qty": 229,
-      "weight": 0.9177
+      "weight": 0.9266
+    },
+    {
+      "name": "이수페타시스",
+      "qty": 53,
+      "weight": 0.8528
     },
     {
       "name": "산일전기",
       "qty": 25,
-      "weight": 0.8225
-    },
-    {
-      "name": "엘앤에프",
-      "qty": 42,
-      "weight": 0.7998
+      "weight": 0.8492
     },
     {
       "name": "에코프로비엠",
       "qty": 33,
-      "weight": 0.7972
+      "weight": 0.8329
     },
     {
       "name": "한화엔진",
       "qty": 101,
-      "weight": 0.7736
+      "weight": 0.8105
     },
     {
-      "name": "LS",
-      "qty": 14,
-      "weight": 0.769
+      "name": "엘앤에프",
+      "qty": 42,
+      "weight": 0.8054
     },
     {
       "name": "LS ELECTRIC",
       "qty": 23,
-      "weight": 0.7273
+      "weight": 0.8015
+    },
+    {
+      "name": "LS",
+      "qty": 14,
+      "weight": 0.7948
     },
     {
       "name": "로보티즈",
       "qty": 14,
-      "weight": 0.6566
-    },
-    {
-      "name": "현대건설",
-      "qty": 29,
-      "weight": 0.6491
+      "weight": 0.629
     },
     {
       "name": "레인보우로보틱스",
       "qty": 7,
-      "weight": 0.6207
+      "weight": 0.6252
     },
     {
       "name": "나노신소재",
       "qty": 69,
-      "weight": 0.5658
+      "weight": 0.5883
     },
     {
       "name": "효성중공업",
       "qty": 1,
-      "weight": 0.4798
+      "weight": 0.5078
     }
   ]
 }
