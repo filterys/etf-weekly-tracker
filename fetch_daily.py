@@ -561,7 +561,7 @@ def detect_changes(today_snap, prev_snap):
     removed = [n for n in prev_map  if n not in today_map]
     increased = [
         n for n in today_map
-        if n in prev_map and today_map[n]['weight'] > prev_map[n]['weight'] + 0.3
+        if n in prev_map and today_map[n].get('qty', 0) > prev_map[n].get('qty', 0)
     ]
     return new_in, removed, increased
 
