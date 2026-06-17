@@ -592,10 +592,13 @@ def main():
             save_snapshot(today, today_snaps)
             print(f'  💾 일간 누적 저장: {n_with_data}/{len(today_snaps)}종목 데이터 확보')
     # === 시그널 집계 (한 패스: 시트 detail + 교차 ETF 통계) ===
-    new_counter  = Counter()   # 종목 → 신규 편입한 ETF 수 (공통 신규 신호)
+    new_counter  = Counter()   # 종목 → 신규 편입한 ETF 수 (공통 신규=매수 컨센서스)
+    inc_counter  = Counter()   # 종목 → 비중 확대한 ETF 수 (공통 증가)
+    rem_counter  = Counter()   # 종목 → 제외한 ETF 수 (공통 제외=매도 컨센서스)
     hold_counter = Counter()   # 종목 → 보유 중인 ETF 수 (최다 보유)
     total_new = total_inc = total_rem = 0
     sheet_sections = []
+    unchanged = []   # 데이터는 있으나 신규/증가/제외 변동이 없는 ETF
     for sheet in SHEETS:
         sheet_name = sheet['name']
         section_lines = [f'\n🔷 <b>[{sheet_name}]</b>']
@@ -609,19 +612,27 @@ def main():
             if not today_h:
                 section_lines.append(f'  ⚠️ {etf_name}: 데이터 없음')
                 continue
+            today_w = {h['name']: h.get('weight', 0) for h in today_h}
+            prev_w  = {h['name']: h.get('weight', 0) for h in prev_h}
             new_in, removed, increased = detect_changes(today_h, prev_h)
-            for n in new_in:
-                new_counter[n] += 1
+            for n in new_in:    new_counter[n] += 1
+            for n in increased: inc_counter[n] += 1
+            for n in removed:   rem_counter[n] += 1
             total_new += len(new_in); total_inc += len(increased); total_rem += len(removed)
             if new_in or removed or increased:
                 sheet_has_signal = True
                 section_lines.append(f'\n  <b>{etf_name}</b>')
                 if new_in:
-                    section_lines.append(f'  🟢 신규: {", ".join(new_in[:5])}')
+                    s = sorted(new_in, key=lambda n: today_w.get(n, 0), reverse=True)
+                    section_lines.append('  🟢 신규: ' + ', '.join(f'{n}({today_w.get(n,0):.1f}%)' for n in s[:5]))
                 if increased:
-                    section_lines.append(f'  🔼 증가: {", ".join(increased[:5])}')
+                    s = sorted(increased, key=lambda n: today_w.get(n, 0), reverse=True)
+                    section_lines.append('  🔼 증가: ' + ', '.join(f'{n}({today_w.get(n,0):.1f}%)' for n in s[:5]))
                 if removed:
-                    section_lines.append(f'  🔴 제외: {", ".join(removed[:3])}')
+                    s = sorted(removed, key=lambda n: prev_w.get(n, 0), reverse=True)
+                    section_lines.append('  🔴 제외: ' + ', '.join(f'{n}({prev_w.get(n,0):.1f}%)' for n in s[:3]))
+            else:
+                unchanged.append(etf_name)
         if sheet_has_signal:
             sheet_sections.append(section_lines)
 
@@ -629,10 +640,22 @@ def main():
     lines = ['📊 <b>ETF 주간 트래커 일일 리포트</b>', f'📅 {date_str(today)} 기준']
     lines.append('\n📈 <b>오늘의 요약</b>')
     lines.append(f'  • 신규 {total_new} · 증가 {total_inc} · 제외 {total_rem}')
-    consensus = [(n, c) for n, c in new_counter.most_common() if c >= 2][:5]
-    if consensus:
-        lines.append('  🤝 <b>공통 신규</b> (2개 이상 ETF 동시 편입)')
-        for n, c in consensus:
+    def _consensus(counter, k=5):
+        return [(n, c) for n, c in counter.most_common() if c >= 2][:k]
+    cons_new = _consensus(new_counter)
+    if cons_new:
+        lines.append('  🤝 <b>공통 신규</b> (2개+ ETF 동시 편입·매수)')
+        for n, c in cons_new:
+            lines.append(f'    · {n} ({c}개 ETF)')
+    cons_inc = _consensus(inc_counter)
+    if cons_inc:
+        lines.append('  ⏫ <b>공통 증가</b> (2개+ ETF 동시 확대)')
+        for n, c in cons_inc:
+            lines.append(f'    · {n} ({c}개 ETF)')
+    cons_rem = _consensus(rem_counter)
+    if cons_rem:
+        lines.append('  🔻 <b>공통 제외</b> (2개+ ETF 동시 매도)')
+        for n, c in cons_rem:
             lines.append(f'    · {n} ({c}개 ETF)')
     top_held = hold_counter.most_common(3)
     if top_held:
@@ -642,6 +665,8 @@ def main():
         lines.extend(section_lines)
     if not sheet_sections:
         lines.append('\n변동 없음 (전일 대비 신규/변화 없음)')
+    if unchanged:
+        lines.append(f'\n📍 <b>변동 없음</b>: {", ".join(unchanged)}')
 
     msg = '\n'.join(lines)
     print(msg)
