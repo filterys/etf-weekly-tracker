@@ -565,6 +565,47 @@ def detect_changes(today_snap, prev_snap):
     ]
     return new_in, removed, increased
 
+def build_weekly_summary(today):
+    """금요일 주간(WoW) 요약: 이번주 vs 지난주 마지막 거래일 비교. 데이터 없으면 None."""
+    prev_ref, this_ref = get_wow_pair(today)
+    if not (prev_ref and this_ref):
+        return None
+    wk_today = load_snapshot(this_ref)
+    wk_prev  = load_snapshot(prev_ref)
+    new_c, inc_c, rem_c, hold_c = Counter(), Counter(), Counter(), Counter()
+    tn = ti = tr = 0
+    for sheet in SHEETS:
+        for etf in sheet['etfs']:
+            th = drop_cash(wk_today.get(etf['name'], []))
+            ph = drop_cash(wk_prev.get(etf['name'], []))
+            for h in th:
+                hold_c[h['name']] += 1
+            if not th:
+                continue
+            ni, rm, inc = detect_changes(th, ph)
+            for n in ni: new_c[n] += 1
+            for n in inc: inc_c[n] += 1
+            for n in rm: rem_c[n] += 1
+            tn += len(ni); ti += len(inc); tr += len(rm)
+    lines = ['📅 <b>주간 요약</b> (WoW · 이번주 vs 지난주)',
+             f'🗓 {date_str(prev_ref)} → {date_str(this_ref)}',
+             f'  • 신규 {tn} · 증가 {ti} · 제외 {tr}']
+    def _cons(c, label, emoji):
+        items = [(n, x) for n, x in c.most_common() if x >= 2][:5]
+        out = []
+        if items:
+            out.append(f'  {emoji} <b>{label}</b>')
+            for n, x in items:
+                out.append(f'    · {n} ({x}개 ETF)')
+        return out
+    lines += _cons(new_c, '공통 신규', '🤝')
+    lines += _cons(inc_c, '공통 증가', '⏫')
+    lines += _cons(rem_c, '공통 제외', '🔻')
+    top = hold_c.most_common(3)
+    if top:
+        lines.append('  🏆 최다 보유: ' + ', '.join(f'{n}({x})' for n, x in top))
+    return '\n'.join(lines)
+
 def main():
     today = get_target_date()
     prev  = last_data_date_before(today) or prev_biz(today)
@@ -614,6 +655,8 @@ def main():
                 continue
             today_w = {h['name']: h.get('weight', 0) for h in today_h}
             prev_w  = {h['name']: h.get('weight', 0) for h in prev_h}
+            today_q = {h['name']: h.get('qty', 0) for h in today_h}
+            prev_q  = {h['name']: h.get('qty', 0) for h in prev_h}
             new_in, removed, increased = detect_changes(today_h, prev_h)
             for n in new_in:    new_counter[n] += 1
             for n in increased: inc_counter[n] += 1
@@ -624,13 +667,13 @@ def main():
                 section_lines.append(f'\n  <b>{etf_name}</b>')
                 if new_in:
                     s = sorted(new_in, key=lambda n: today_w.get(n, 0), reverse=True)
-                    section_lines.append('  🟢 신규: ' + ', '.join(f'{n}({today_w.get(n,0):.1f}%)' for n in s[:5]))
+                    section_lines.append('  🟢 신규: ' + ', '.join(f'{n}({today_w.get(n,0):.1f}%, +{today_q.get(n,0):,}주)' for n in s[:5]))
                 if increased:
                     s = sorted(increased, key=lambda n: today_w.get(n, 0), reverse=True)
-                    section_lines.append('  🔼 증가: ' + ', '.join(f'{n}({today_w.get(n,0):.1f}%)' for n in s[:5]))
+                    section_lines.append('  🔼 증가: ' + ', '.join(f'{n}({today_w.get(n,0):.1f}%, {today_q.get(n,0)-prev_q.get(n,0):+,}주, {today_w.get(n,0)-prev_w.get(n,0):+.1f}%p)' for n in s[:5]))
                 if removed:
                     s = sorted(removed, key=lambda n: prev_w.get(n, 0), reverse=True)
-                    section_lines.append('  🔴 제외: ' + ', '.join(f'{n}({prev_w.get(n,0):.1f}%)' for n in s[:3]))
+                    section_lines.append('  🔴 제외: ' + ', '.join(f'{n}({prev_w.get(n,0):.1f}%, -{prev_q.get(n,0):,}주)' for n in s[:3]))
             else:
                 unchanged.append(etf_name)
         if sheet_has_signal:
@@ -675,6 +718,10 @@ def main():
     # === 금요일: 주간 WoW 엑셀 첨부 ===
     if today.weekday() == 4:
         try:
+            wk_summary = build_weekly_summary(today)
+            if wk_summary:
+                send_telegram(wk_summary)
+                print('  📅 주간 요약 발송 완료')
             import generate_excel
             xlsx_path = generate_excel.main()
             if xlsx_path:
