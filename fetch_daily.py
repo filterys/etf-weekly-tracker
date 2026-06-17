@@ -8,6 +8,7 @@
 import os, json, re, requests, asyncio
 from datetime import datetime, timedelta
 from pathlib import Path
+from collections import Counter
 from config.etfs import SHEETS, ALL_ETFS, TELEGRAM_CHAT_ID
 
 TG_BOT_TOKEN = os.environ.get('TG_BOT_TOKEN', '')
@@ -493,20 +494,65 @@ def load_snapshot(date):
     with open(path, encoding='utf-8') as f:
         return json.load(f)
 
+def _tg_send_message(text):
+    r = requests.post(
+        f'https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage',
+        json={'chat_id': TELEGRAM_CHAT_ID, 'text': text, 'parse_mode': 'HTML'},
+        timeout=15
+    )
+    return r.json().get('ok', False)
+
+def _chunk_text(text, limit=3800):
+    """텔레그램 4096자 제한 대비 라인 단위 안전 분할."""
+    chunks, cur = [], ''
+    for line in text.split('\n'):
+        if cur and len(cur) + len(line) + 1 > limit:
+            chunks.append(cur)
+            cur = line
+        else:
+            cur = f'{cur}\n{line}' if cur else line
+    if cur:
+        chunks.append(cur)
+    return chunks
+
 def send_telegram(text):
     if DRY_RUN or TARGET_DATE:  # 백필 시 텔레 미발송
         print(f'[DRY_RUN] TG: {text[:100]}')
         return True
     try:
-        r = requests.post(
-            f'https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage',
-            json={'chat_id': TELEGRAM_CHAT_ID, 'text': text, 'parse_mode': 'HTML'},
-            timeout=15
-        )
-        return r.json().get('ok', False)
+        ok = True
+        for chunk in _chunk_text(text):
+            if not _tg_send_message(chunk):
+                ok = False
+        return ok
     except Exception as e:
         print(f'텔레그램 오류: {e}')
         return False
+
+def send_telegram_document(filepath, caption=''):
+    if DRY_RUN or TARGET_DATE:  # 백필 시 텔레 미발송
+        print(f'[DRY_RUN] TG DOC: {filepath}')
+        return True
+    try:
+        with open(filepath, 'rb') as f:
+            r = requests.post(
+                f'https://api.telegram.org/bot{TG_BOT_TOKEN}/sendDocument',
+                data={'chat_id': TELEGRAM_CHAT_ID, 'caption': caption},
+                files={'document': f},
+                timeout=60
+            )
+        return r.json().get('ok', False)
+    except Exception as e:
+        print(f'텔레그램 문서 오류: {e}')
+        return False
+
+# 현금성 항목(종목 아님) — 신규/제외/보유 집계에서 전역 제외
+_CASH_EXACT = {'설정현금액', '원화예금', '원화현금', '외화예금', '외화현금', 'RP', 'MMF', '단기금융상품'}
+def is_cash(name):
+    n = (name or '').strip()
+    return n in _CASH_EXACT or '예금' in n or '현금' in n
+def drop_cash(holdings):
+    return [h for h in holdings if not is_cash(h.get('name', ''))]
 
 def detect_changes(today_snap, prev_snap):
     today_map = {h['name']: h for h in today_snap}
@@ -545,24 +591,30 @@ def main():
         else:
             save_snapshot(today, today_snaps)
             print(f'  💾 일간 누적 저장: {n_with_data}/{len(today_snaps)}종목 데이터 확보')
-    lines = ['📊 <b>ETF 주간 트래커 일일 리포트</b>']
-    lines.append(f'📅 {date_str(today)} 기준\n')
-    has_signal = False
+    # === 시그널 집계 (한 패스: 시트 detail + 교차 ETF 통계) ===
+    new_counter  = Counter()   # 종목 → 신규 편입한 ETF 수 (공통 신규 신호)
+    hold_counter = Counter()   # 종목 → 보유 중인 ETF 수 (최다 보유)
+    total_new = total_inc = total_rem = 0
+    sheet_sections = []
     for sheet in SHEETS:
         sheet_name = sheet['name']
         section_lines = [f'\n🔷 <b>[{sheet_name}]</b>']
         sheet_has_signal = False
         for etf in sheet['etfs']:
             etf_name = etf['name']
-            today_h  = today_snaps.get(etf_name, [])
-            prev_h   = prev_snaps.get(etf_name, [])
+            today_h  = drop_cash(today_snaps.get(etf_name, []))
+            prev_h   = drop_cash(prev_snaps.get(etf_name, []))
+            for h in today_h:
+                hold_counter[h['name']] += 1
             if not today_h:
                 section_lines.append(f'  ⚠️ {etf_name}: 데이터 없음')
                 continue
             new_in, removed, increased = detect_changes(today_h, prev_h)
+            for n in new_in:
+                new_counter[n] += 1
+            total_new += len(new_in); total_inc += len(increased); total_rem += len(removed)
             if new_in or removed or increased:
                 sheet_has_signal = True
-                has_signal = True
                 section_lines.append(f'\n  <b>{etf_name}</b>')
                 if new_in:
                     section_lines.append(f'  🟢 신규: {", ".join(new_in[:5])}')
@@ -571,12 +623,42 @@ def main():
                 if removed:
                     section_lines.append(f'  🔴 제외: {", ".join(removed[:3])}')
         if sheet_has_signal:
-            lines.extend(section_lines)
-    if not has_signal:
-        lines.append('변동 없음 (전일 대비 신규/변화 없음)')
+            sheet_sections.append(section_lines)
+
+    # === 리포트 작성: 요약 헤더 + 시트별 detail ===
+    lines = ['📊 <b>ETF 주간 트래커 일일 리포트</b>', f'📅 {date_str(today)} 기준']
+    lines.append('\n📈 <b>오늘의 요약</b>')
+    lines.append(f'  • 신규 {total_new} · 증가 {total_inc} · 제외 {total_rem}')
+    consensus = [(n, c) for n, c in new_counter.most_common() if c >= 2][:5]
+    if consensus:
+        lines.append('  🤝 <b>공통 신규</b> (2개 이상 ETF 동시 편입)')
+        for n, c in consensus:
+            lines.append(f'    · {n} ({c}개 ETF)')
+    top_held = hold_counter.most_common(3)
+    if top_held:
+        lines.append('  🏆 최다 보유: ' + ', '.join(f'{n}({c})' for n, c in top_held))
+
+    for section_lines in sheet_sections:
+        lines.extend(section_lines)
+    if not sheet_sections:
+        lines.append('\n변동 없음 (전일 대비 신규/변화 없음)')
+
     msg = '\n'.join(lines)
     print(msg)
     send_telegram(msg)
+
+    # === 금요일: 주간 WoW 엑셀 첨부 ===
+    if today.weekday() == 4:
+        try:
+            import generate_excel
+            xlsx_path = generate_excel.main()
+            if xlsx_path:
+                send_telegram_document(xlsx_path, caption=f'📑 주간 ETF 엑셀 리포트 ({date_str(today)})')
+                print(f'  📎 금요일 주간 엑셀 첨부 완료: {xlsx_path}')
+            else:
+                print('  ⚠️ 주간 엑셀 생성 결과 없음 — 첨부 생략')
+        except Exception as e:
+            print(f'  ⚠️ 주간 엑셀 생성/첨부 실패: {e}')
 
 if __name__ == '__main__':
     main()
